@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================================
+   SEMANTIC THEME ARCHITECTURE (4-STATE ENGINE)
+   ==================================================== */
+
+/* 1. Light Mode + Eye Comfort OFF */
+:root,
+:root[data-theme="light"][data-eye-comfort="false"],
+html[data-theme="light"]:not(.dark):not(.eye-comfort) {
+  --app-bg: #f1f5f9;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-hover: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --input-bg: #f8fafc;
+  --input-text: #0f172a;
+  --input-placeholder: #94a3b8;
+  --control-bg: #f1f5f9;
+  --control-hover: #e2e8f0;
+  --accent: #1d4ed8;
+  --accent-soft: #eff6ff;
+  --hero-gradient: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0f172a 100%);
+  --hero-text: #ffffff;
+  --card-hearing-bg: linear-gradient(180deg, #fff1f2 0%, #ffffff 100%);
+  --card-hearing-border: #fecdd3;
+  --card-hearing-text: #881337;
+}
+
+/* 2. Light Mode + Eye Comfort ON */
+:root[data-theme="light"][data-eye-comfort="true"],
+html[data-theme="light"].eye-comfort:not(.dark) {
+  --app-bg: #f2ece0;
+  --header-bg: #fbf9f4;
+  --sidebar-bg: #f7f3ea;
+  --surface: #fbf9f4;
+  --surface-elevated: #f7f3ea;
+  --surface-hover: #eee8db;
+  --text-primary: #2d251d;
+  --text-secondary: #4a3f35;
+  --text-muted: #73675a;
+  --border: #dfd6c2;
+  --border-subtle: #e9e3d5;
+  --input-bg: #eee8db;
+  --input-text: #2d251d;
+  --input-placeholder: #8c7f70;
+  --control-bg: #eee8db;
+  --control-hover: #e2dac7;
+  --accent: #276498;
+  --accent-soft: #e7e2d4;
+  --hero-gradient: linear-gradient(135deg, #2c4a6f 0%, #203a57 50%, #142436 100%);
+  --hero-text: #fdfbf7;
+  --card-hearing-bg: linear-gradient(180deg, #fceede 0%, #fbf9f4 100%);
+  --card-hearing-border: #e8cbb5;
+  --card-hearing-text: #5e1c1c;
+}
+
+/* 3. Dark Mode + Eye Comfort OFF */
+:root[data-theme="dark"][data-eye-comfort="false"],
+html.dark:not(.eye-comfort),
+html[data-theme="dark"]:not(.eye-comfort) {
+  --app-bg: #070c18;
+  --header-bg: #0f172a;
+  --sidebar-bg: #0b1325;
+  --surface: #0f172a;
+  --surface-elevated: #162238;
+  --surface-hover: #1a2942;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: #1e2d4a;
+  --border-subtle: #17243c;
+  --input-bg: #141f36;
+  --input-text: #f8fafc;
+  --input-placeholder: #64748b;
+  --control-bg: #141f36;
+  --control-hover: #1c2b46;
+  --accent: #38bdf8;
+  --accent-soft: #0c2d48;
+  --hero-gradient: linear-gradient(135deg, #0a0f1d 0%, #111a2e 50%, #172554 100%);
+  --hero-text: #ffffff;
+  --card-hearing-bg: linear-gradient(180deg, #2a1016 0%, #0f172a 100%);
+  --card-hearing-border: #4c1d28;
+  --card-hearing-text: #fda4af;
+}
+
+/* 4. Dark Mode + Eye Comfort ON (Softer warm charcoal) */
+:root[data-theme="dark"][data-eye-comfort="true"],
+html.dark.eye-comfort,
+html[data-theme="dark"][data-eye-comfort="true"] {
+  --app-bg: #11141a;
+  --header-bg: #161a22;
+  --sidebar-bg: #14171e;
+  --surface: #191e26;
+  --surface-elevated: #222934;
+  --surface-hover: #29313e;
+  --text-primary: #e6e2da;
+  --text-secondary: #b8b3a8;
+  --text-muted: #8c867a;
+  --border: #2c3442;
+  --border-subtle: #202631;
+  --input-bg: #1e2430;
+  --input-text: #e6e2da;
+  --input-placeholder: #736c61;
+  --control-bg: #1e2430;
+  --control-hover: #272f3d;
+  --accent: #5e9bcc;
+  --accent-soft: #1e2836;
+  --hero-gradient: linear-gradient(135deg, #161b24 0%, #19202c 50%, #131720 100%);
+  --hero-text: #e8e4dc;
+  --card-hearing-bg: linear-gradient(180deg, #24171a 0%, #191e26 100%);
+  --card-hearing-border: #3d262c;
+  --card-hearing-text: #f0abac;
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ====================================================
+   DEVANAGARI & HINDI TYPOGRAPHY AND CLIPPING PREVENTION
+   ==================================================== */
+:lang(hi), 
+[lang="hi"], 
+html[lang="hi"] {
+  font-family: 'Noto Sans Devanagari', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html[lang="hi"] body {
+  line-height: 1.55;
+}
+
+html[lang="hi"] h1,
+html[lang="hi"] h2,
+html[lang="hi"] h3,
+html[lang="hi"] h4,
+html[lang="hi"] h5,
+html[lang="hi"] h6 {
+  line-height: 1.38;
+}
+
+button,
+[role="button"],
+.badge,
+[class*="rounded-full"] {
+  line-height: 1.35;
+}
+
+html[lang="hi"] button,
+html[lang="hi"] [role="button"] {
+  line-height: 1.4;
+}
+
+html[lang="hi"] td,
+html[lang="hi"] th {
+  line-height: 1.45;
+}
+
+html[lang="hi"] input,
+html[lang="hi"] select,
+html[lang="hi"] textarea {
+  line-height: 1.45;
+}
+
+html[lang="hi"] .truncate {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+/* ====================================================
+   SEMANTIC THEME CLASSES & COMPONENT HELPERS
+   ==================================================== */
+.theme-page {
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+}
+
+.app-container {
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+}
+
+.theme-header {
+  background-color: var(--header-bg);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.theme-sidebar {
+  background-color: var(--sidebar-bg);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+.theme-card {
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.theme-surface-elevated {
+  background-color: var(--surface-elevated);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.theme-surface-secondary {
+  background-color: var(--control-bg);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.theme-control {
+  background-color: var(--control-bg);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.theme-control-hover:hover {
+  background-color: var(--control-hover);
+}
+
+.theme-input {
+  background-color: var(--input-bg);
+  border-color: var(--border);
+  color: var(--input-text);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+.theme-border {
+  border-color: var(--border);
+}
+
+.theme-border-subtle {
+  border-color: var(--border-subtle);
+}
+
+.theme-hero {
+  background: var(--hero-gradient);
+  color: var(--hero-text);
+  border-color: var(--border);
+}
+
+.theme-card-hearing {
+  background: var(--card-hearing-bg);
+  border-color: var(--card-hearing-border);
+}
+
+/* Ring utilities using theme tokens */
+.ring-header {
+  --tw-ring-color: var(--header-bg);
+}
+
+.ring-app {
+  --tw-ring-color: var(--border);
+}
+
+/* border-app utility shorthand */
+.border-app {
+  border-color: var(--border);
+}
+
+.border-subtle {
+  border-color: var(--border-subtle);
+}
+
+/* bg-surface utilities */
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-surface-hover {
+  background-color: var(--surface-hover);
+}
+
+.hover\:bg-surface-hover:hover {
+  background-color: var(--surface-hover);
+}
+
+.bg-control {
+  background-color: var(--control-bg);
+}
+
+.bg-control-hover {
+  background-color: var(--control-hover);
+}
+
+.hover\:bg-control-hover:hover {
+  background-color: var(--control-hover);
+}
+
+.group-hover\:bg-control-hover:hover,
+.group:hover .group-hover\:bg-control-hover {
+  background-color: var(--control-hover);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

@@ -1,0 +1,852 @@
+import { Case, Task, Hearing, DocumentItem, ActivityItem, CaseNote, RawSpreadsheetRow, AIInsightData } from '../types';
+
+export const mockCases: Case[] = [
+  {
+    id: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    clientPhone: '+91 98112 45890',
+    gender: 'Male',
+    genderHi: 'पुरुष',
+    age: 42,
+    location: 'Rohini Sector 16, New Delhi',
+    locationHi: 'रोहिणी सेक्टर 16, नई दिल्ली',
+    court: 'Tis Hazari District Court (Room 14)',
+    courtHi: 'तीस हजारी जिला न्यायालय (कोर्ट रूम 14)',
+    caseType: 'Undertrial Bail / Sec 436A CrPC',
+    caseTypeHi: 'विचाराधीन कैदी जमानत / धारा 436A CrPC',
+    stage: 'Hearing',
+    status: 'Hearing Scheduled',
+    priority: 'Urgent',
+    nextHearingDate: 'Today, 11:30 AM',
+    nextHearingDateHi: 'आज, सुबह 11:30 बजे',
+    nextHearingPurpose: 'Hearing on Regular Bail Application under Section 436A / Sec 479 BNSS',
+    nextHearingPurposeHi: 'धारा 436A CrPC / 479 BNSS के तहत नियमित जमानत आवेदन पर सुनवाई',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    assignedParalegal: 'Sunil Kumar (Field Lead)',
+    fillingDate: '12 Jan 2026',
+    summary: 'Undertrial detention exceeding half of maximum statutory sentence without trial commencement. Bail application filed citing fundamental right to speedy justice under Article 21.',
+    summaryHi: 'बिना मुकदमा शुरू हुए अधिकतम सजा के आधे से अधिक समय तक निरंतर न्यायिक हिरासत। अनुच्छेद 21 के तहत त्वरित न्याय के अधिकार के आधार पर जमानत अर्जी दाखिल।',
+    pendingAction: 'Submit certified custody certificate to District Judge Bench 3 before 11:00 AM.',
+    pendingActionHi: 'सुबह 11:00 बजे से पहले जिला जज बेंच 3 को तिहाड़ जेल से प्रमाणित हिरासत प्रमाण पत्र प्रस्तुत करें।',
+    keyFacts: [
+      'Detained on 14 March 2023 under IPC 379/411; total custody 35 months.',
+      'Maximum prescribed sentence under charge is 3 years; applicant has served >97%.',
+      'No previous criminal antecedents recorded in Delhi police verification report.',
+      'Surety bond ready with family ration card and verified local guarantor.'
+    ],
+    keyFactsHi: [
+      '14 मार्च 2023 से IPC 379/411 के तहत न्यायिक हिरासत; कुल हिरासत 35 महीने।',
+      'संबंधित आरोप में अधिकतम सजा 3 वर्ष है; मुवक्किल 97% से अधिक अवधि काट चुका है।',
+      'दिल्ली पुलिस सत्यापन रिपोर्ट में कोई पूर्व आपराधिक रिकॉर्ड दर्ज नहीं है।',
+      'स्थानीय गारंटर और राशन कार्ड के साथ जामिनदार मुचलका तैयार है।'
+    ],
+    missingDocsCount: 1,
+    tasksCount: 3
+  },
+  {
+    id: 'ALT-2026-108',
+    clientName: 'Sunita Devi',
+    clientNameHi: 'सुनीता देवी',
+    clientPhone: '+91 94231 87654',
+    gender: 'Female',
+    genderHi: 'महिला',
+    age: 34,
+    location: 'Shahdara, East Delhi',
+    locationHi: 'शाहदरा, पूर्वी दिल्ली',
+    court: 'Karkardooma Courts (Mahila Court 2)',
+    courtHi: 'कड़कड़डूमा न्यायालय (महिला अदालत 2)',
+    caseType: 'Protection of Women from Domestic Violence Act',
+    caseTypeHi: 'घरेलू हिंसा से महिला संरक्षण अधिनियम',
+    stage: 'Legal Strategy',
+    status: 'Active',
+    priority: 'High',
+    nextHearingDate: '24 Aug 2026',
+    nextHearingDateHi: '24 अगस्त 2026',
+    nextHearingPurpose: 'Interim Maintenance Argument & Residence Order Execution',
+    nextHearingPurposeHi: 'अंतरिम भरण-पोषण पर बहस और सुरक्षित निवास आदेश का निष्पादन',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    assignedParalegal: 'Meenakshi Rao',
+    fillingDate: '04 Feb 2026',
+    summary: 'Petition seeking interim maintenance, child schooling support, and safe residence protection orders against non-applicant spouse.',
+    summaryHi: 'मुवक्किल और दो बच्चों के लिए अंतरिम भरण-पोषण, स्कूल फीस और सुरक्षित आवास संरक्षण की याचिका।',
+    pendingAction: 'Draft rejoinder affidavit responding to respondent statement of assets.',
+    pendingActionHi: 'प्रतिवादी के संपत्ति हलफनामे के जवाब में प्रत्युत्तर हलफनामा तैयार करें।',
+    keyFacts: [
+      'Marriage solemnized in 2014; two minor children aged 7 and 9.',
+      'DIR (Domestic Incident Report) submitted by Protection Officer on 18 Jan 2026.',
+      'Interim relief granted for child school fee payment; residence order pending.'
+    ],
+    keyFactsHi: [
+      'विवाह वर्ष 2014 में हुआ; दो नाबालिग बच्चे (आयु 7 और 9 वर्ष)।',
+      'संरक्षण अधिकारी द्वारा 18 जनवरी 2026 को घरेलू घटना रिपोर्ट (DIR) प्रस्तुत की गई।',
+      'बच्चों की स्कूल फीस के भुगतान हेतु अंतरिम राहत स्वीकृत; निवास आदेश लंबित है।'
+    ],
+    missingDocsCount: 2,
+    tasksCount: 2
+  },
+  {
+    id: 'ALT-2026-112',
+    clientName: 'Mohammad Irfan',
+    clientNameHi: 'मोहम्मद इरफ़ान',
+    clientPhone: '+91 87901 23412',
+    gender: 'Male',
+    genderHi: 'पुरुष',
+    age: 28,
+    location: 'Okhla Industrial Area, New Delhi',
+    locationHi: 'ओखला औद्योगिक क्षेत्र, नई दिल्ली',
+    court: 'Labour Court, Rouse Avenue Complex',
+    courtHi: 'श्रम न्यायालय, राउज एवेन्यू परिसर (कमरा 6)',
+    caseType: 'Inter-State Migrant Workmen / Wage Recovery',
+    caseTypeHi: 'प्रवासी श्रमिक / बकाया मजदूरी वसूली',
+    stage: 'Documentation',
+    status: 'Pending Documents',
+    priority: 'Medium',
+    nextHearingDate: '28 Aug 2026',
+    nextHearingDateHi: '28 अगस्त 2026',
+    nextHearingPurpose: 'Verification of Contractor Wage Slips & Muster Roll Production',
+    nextHearingPurposeHi: 'ठेकेदार मजदूरी पर्चियों और मस्टर रोल रिकॉर्ड का सत्यापन',
+    assignedAdvocate: 'Adv. Rajesh Verma',
+    assignedParalegal: 'Sunil Kumar (Field Lead)',
+    fillingDate: '18 Feb 2026',
+    summary: 'Recovery of unpaid wages for 11 construction workers for work done between Aug-Dec 2025 under Payment of Wages Act.',
+    summaryHi: '11 निर्माण श्रमिकों के 5 महीने के बकाया वेतन की वसूली हेतु मजदूरी भुगतान अधिनियम के तहत दावा।',
+    pendingAction: 'Collect signed authorization letters and bank passbook copies from remaining 3 workers.',
+    pendingActionHi: 'शेष 3 श्रमिकों से हस्ताक्षरित अधिकार पत्र और बैंक पासबुक की प्रतियां प्राप्त करें।',
+    keyFacts: [
+      'Sub-contractor withheld payment of Rs 2,42,000 across 11 site workers.',
+      'Attendance register verified by site supervisor on 10 Jan 2026.',
+      'Conciliation officer notice issued on 02 Feb 2026 yielded no response.'
+    ],
+    keyFactsHi: [
+      'उप-ठेकेदार ने 11 निर्माण श्रमिकों के ₹2,42,000 की कुल मजदूरी रोक रखी है।',
+      'साइट सुपरवाइजर द्वारा 10 जनवरी 2026 को उपस्थिति रजिस्टर सत्यापित किया गया।',
+      'सुलह अधिकारी के 02 फरवरी 2026 के नोटिस पर नियोक्ता का कोई जवाब नहीं आया।'
+    ],
+    missingDocsCount: 3,
+    tasksCount: 2
+  },
+  {
+    id: 'ALT-2026-115',
+    clientName: 'Laxmi Bai',
+    clientNameHi: 'लक्ष्मी बाई',
+    clientPhone: '+91 97188 90123',
+    gender: 'Female',
+    genderHi: 'महिला',
+    age: 58,
+    location: 'Kusumpur Pahari, Vasant Vihar',
+    locationHi: 'कुसुमपुर पहाड़ी, वसंत विहार, नई दिल्ली',
+    court: 'Delhi High Court (Writ Jurisdiction)',
+    courtHi: 'दिल्ली उच्च न्यायालय (रिट क्षेत्राधिकार, कोर्ट 32)',
+    caseType: 'Informal Settlement Eviction / Right to Housing',
+    caseTypeHi: 'अनौपचारिक बस्ती बेदखली / पुनर्वास अधिकार',
+    stage: 'Case Analysis',
+    status: 'Under Review',
+    priority: 'High',
+    nextHearingDate: '02 Sep 2026',
+    nextHearingDateHi: '02 सितंबर 2026',
+    nextHearingPurpose: 'Stay on Demolition Notice & Survey Status Report',
+    nextHearingPurposeHi: 'तोड़फोड़ नोटिस पर अंतरिम रोक और पुनर्वास सर्वेक्षण स्थिति रिपोर्ट',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    assignedParalegal: 'Meenakshi Rao',
+    fillingDate: '28 Jan 2026',
+    summary: 'Challenging eviction notice issued without DUSIB socio-economic survey or alternate rehabilitation provision.',
+    summaryHi: 'बिना सर्वेक्षण और पुनर्वास व्यवस्था के जारी बेदखली नोटिस को उच्च न्यायालय में चुनौती।',
+    pendingAction: 'Collate voter IDs and electricity bills dating prior to 2015 cutoff date.',
+    pendingActionHi: '2015 की कटऑफ तारीख से पहले के मतदाता पहचान पत्र और बिजली बिल एकत्र करें।',
+    keyFacts: [
+      'Cluster eligible under 2015 Delhi Slum Rehabilitation Policy.',
+      'Show cause notice issued by municipal authority without 30-day statutory notice period.'
+    ],
+    keyFactsHi: [
+      'बस्ती 2015 की दिल्ली स्लम पुनर्वास नीति के तहत पात्रता रखती है।',
+      'नगर निगम द्वारा बिना 30 दिन की वैधानिक अवधि के कारण बताओ नोटिस जारी किया गया।'
+    ],
+    missingDocsCount: 1,
+    tasksCount: 1
+  },
+  {
+    id: 'ALT-2026-121',
+    clientName: 'Vikas Anand',
+    clientNameHi: 'विकास आनंद',
+    clientPhone: '+91 99581 65432',
+    gender: 'Male',
+    genderHi: 'पुरुष',
+    age: 16,
+    location: 'Jahangirpuri, North Delhi',
+    locationHi: 'जहांगीरपुरी, उत्तर दिल्ली',
+    court: 'Juvenile Justice Board (JJB-1, Kingsway Camp)',
+    courtHi: 'किशोर न्याय बोर्ड (JJB-1, किंग्सवे कैंप)',
+    caseType: 'Juvenile Justice (Care & Protection) Inquiry',
+    caseTypeHi: 'किशोर न्याय बोर्ड जांच एवं सामाजिक पुनर्वास',
+    stage: 'Monitoring',
+    status: 'Active',
+    priority: 'Medium',
+    nextHearingDate: '07 Sep 2026',
+    nextHearingDateHi: '07 सितंबर 2026',
+    nextHearingPurpose: 'Social Background Report (SBR) Review & Skill Training Order',
+    nextHearingPurposeHi: 'सामाजिक पृष्ठभूमि रिपोर्ट (SBR) समीक्षा और कौशल प्रशिक्षण आदेश',
+    assignedAdvocate: 'Adv. Rajesh Verma',
+    assignedParalegal: 'Sunil Kumar (Field Lead)',
+    fillingDate: '10 Jan 2026',
+    summary: 'Social reintegration and juvenile bail compliance monitoring for school readmission.',
+    summaryHi: 'जमानत शर्तों की अनुपालना और स्कूल में पुनः प्रवेश हेतु सामाजिक पृष्ठभूमि रिपोर्ट की निगरानी।',
+    pendingAction: 'Obtain school principal admission verification letter.',
+    pendingActionHi: 'स्कूल प्राचार्य से प्रवेश सत्यापन पत्र प्राप्त करें।',
+    keyFacts: [
+      'Age verified through school birth certificate (16 years 4 months).',
+      'Child placed under kinship care with grandmother under JJ Act Sec 18.'
+    ],
+    keyFactsHi: [
+      'स्कूल जन्म प्रमाण पत्र के अनुसार आयु 16 वर्ष 4 महीने सत्यापित।',
+      'किशोर न्याय अधिनियम की धारा 18 के तहत बच्चे को दादी की देखरेख में सौंपा गया।'
+    ],
+    missingDocsCount: 0,
+    tasksCount: 1
+  },
+  {
+    id: 'ALT-2026-129',
+    clientName: 'Rekha Sharma',
+    clientNameHi: 'रेखा शर्मा',
+    clientPhone: '+91 98711 00223',
+    gender: 'Female',
+    genderHi: 'महिला',
+    age: 39,
+    location: 'Dwarka Sector 21, New Delhi',
+    locationHi: 'द्वारका सेक्टर 21, नई दिल्ली',
+    court: 'MACT Court, Dwarka District Courts',
+    courtHi: 'मोटर दुर्घटना दावा अधिकरण, द्वारका कोर्ट',
+    caseType: 'Motor Accident Claims Tribunal / Compensation',
+    caseTypeHi: 'मोटर दुर्घटना दावा अधिकरण / मुआवजा दावा',
+    stage: 'Case Intake',
+    status: 'Under Review',
+    priority: 'Low',
+    nextHearingDate: '15 Sep 2026',
+    nextHearingDateHi: '15 सितंबर 2026',
+    nextHearingPurpose: 'Filing of DAR (Detailed Accident Report) & Form 54',
+    nextHearingPurposeHi: 'विस्तृत दुर्घटना रिपोर्ट (DAR) और फॉर्म 54 दाखिल करना',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    assignedParalegal: 'Meenakshi Rao',
+    fillingDate: '19 Feb 2026',
+    summary: 'Claim for compensation for sole breadwinner deceased in commercial truck collision on Outer Ring Road.',
+    summaryHi: 'सड़क दुर्घटना में परिवार के एकमात्र कमाऊ सदस्य की मृत्यु पर बीमा कंपनी से मुआवजे का दावा।',
+    pendingAction: 'Obtain post-mortem report and mechanical inspection report from investigating officer.',
+    pendingActionHi: 'जांच अधिकारी से पोस्टमार्टम रिपोर्ट और वाहन निरीक्षण रिपोर्ट एकत्र करें।',
+    keyFacts: [
+      'FIR No. 89/2026 registered at Dwarka North Police Station under Sec 279/304A IPC.',
+      'Insurance policy of offending vehicle verified as active.'
+    ],
+    keyFactsHi: [
+      'थाना द्वारका नॉर्थ में धारा 279/304A IPC के तहत प्राथमिकी संख्या 89/2026 दर्ज।',
+      'दुर्घटनाग्रस्त वाहन की बीमा पॉलिसी सक्रिय पाई गई।'
+    ],
+    missingDocsCount: 2,
+    tasksCount: 1
+  }
+];
+
+export const mockHearings: Hearing[] = [
+  {
+    id: 'HRG-2026-01',
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    court: 'Tis Hazari District Court, Court Room 14',
+    courtHi: 'तीस हजारी जिला न्यायालय, कोर्ट रूम 14',
+    bench: 'Sh. A. K. Vashisht, Ld. Special Judge',
+    benchHi: 'श्री ए. के. वशिष्ठ, विद्वान विशेष न्यायाधीश',
+    date: 'Today, 21 Aug 2026',
+    dateHi: 'आज, 21 अगस्त 2026',
+    time: '11:30 AM',
+    timeHi: 'सुबह 11:30 बजे',
+    hearingType: 'Regular Bail Argument',
+    hearingTypeHi: 'नियमित जमानत पर बहस',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    purpose: 'Section 436A CrPC / Sec 479 BNSS Undertrial Maximum Custody Release',
+    purposeHi: 'धारा 436A CrPC / 479 BNSS के तहत अधिकतम हिरासत अवधि के आधार पर रिहाई',
+    status: 'Today',
+    requiredDocuments: [
+      'Certified Custody Certificate from Tihar Jail No. 4',
+      'Original Bail Application Memo & Legal Precedents Index',
+      'Surety Verification Affidavit & Family Aadhar'
+    ],
+    requiredDocumentsHi: [
+      'तिहाड़ जेल नंबर 4 से प्रमाणित हिरासत प्रमाण पत्र',
+      'मूल जमानत अर्जी व कानूनी नज़ीर अनुक्रमणिका',
+      'जामिनदार सत्यापन हलफनामा व आधार कार्ड'
+    ],
+    preparednessStatus: 'Ready'
+  },
+  {
+    id: 'HRG-2026-02',
+    caseId: 'ALT-2026-108',
+    clientName: 'Sunita Devi',
+    clientNameHi: 'सुनीता देवी',
+    court: 'Karkardooma Courts, Mahila Court 2',
+    courtHi: 'कड़कड़डूमा न्यायालय, महिला अदालत 2',
+    bench: 'Ms. Neha Sharma, Metropolitan Magistrate',
+    benchHi: 'सुश्री नेहा शर्मा, मेट्रोपॉलिटन मजिस्ट्रेट',
+    date: '24 Aug 2026',
+    dateHi: '24 अगस्त 2026',
+    time: '02:00 PM',
+    timeHi: 'दोपहर 02:00 बजे',
+    hearingType: 'Interim Maintenance Argument',
+    hearingTypeHi: 'अंतरिम भरण-पोषण पर बहस',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    purpose: 'Adjudication on child tuition fee and interim monthly sustenance',
+    purposeHi: 'बच्चों की स्कूल फीस और मासिक भरण-पोषण पर फैसला',
+    status: 'This Week',
+    requiredDocuments: [
+      'Affidavit of Assets & Liabilities (Rajnesh v. Neha compliance)',
+      'School Fee Invoices & Rent Agreement Copy'
+    ],
+    requiredDocumentsHi: [
+      'संपत्ति और देनदारियों का हलफनामा (रजनेश बनाम नेहा अनुपालन)',
+      'स्कूल फीस रसीद व किरायानामा प्रति'
+    ],
+    preparednessStatus: 'Needs Brief'
+  },
+  {
+    id: 'HRG-2026-03',
+    caseId: 'ALT-2026-112',
+    clientName: 'Mohammad Irfan',
+    clientNameHi: 'मोहम्मद इरफ़ान',
+    court: 'Labour Court, Rouse Avenue Complex, Room 6',
+    courtHi: 'श्रम न्यायालय, राउज एवेन्यू परिसर, कमरा 6',
+    bench: 'Presiding Officer, Industrial Tribunal II',
+    benchHi: 'पीठासीन अधिकारी, औद्योगिक न्यायाधिकरण II',
+    date: '28 Aug 2026',
+    dateHi: '28 अगस्त 2026',
+    time: '10:45 AM',
+    timeHi: 'सुबह 10:45 बजे',
+    hearingType: 'Muster Roll Evidence Production',
+    hearingTypeHi: 'मस्टर रोल साक्ष्य प्रस्तुति',
+    assignedAdvocate: 'Adv. Rajesh Verma',
+    purpose: 'Cross-examination of principal employer on sub-contractor wage liability',
+    purposeHi: 'मजदूरी देनदारी पर मुख्य नियोक्ता से जिरह',
+    status: 'This Week',
+    requiredDocuments: [
+      'Consolidated Wage Arrears Calculation Sheet',
+      'Worker Authorization Letters'
+    ],
+    requiredDocumentsHi: [
+      'समेकित मजदूरी बकाया गणना पत्रक',
+      'श्रमिक अधिकार पत्र'
+    ],
+    preparednessStatus: 'Pending Documents'
+  },
+  {
+    id: 'HRG-2026-04',
+    caseId: 'ALT-2026-115',
+    clientName: 'Laxmi Bai',
+    clientNameHi: 'लक्ष्मी बाई',
+    court: 'Delhi High Court, Court 32',
+    courtHi: 'दिल्ली उच्च न्यायालय, कोर्ट रूम 32',
+    bench: 'Hon\'ble Justice R. Subramanian',
+    benchHi: 'माननीय न्यायमूर्ति आर. सुब्रमण्यन',
+    date: '02 Sep 2026',
+    dateHi: '02 सितंबर 2026',
+    time: '10:30 AM',
+    timeHi: 'सुबह 10:30 बजे',
+    hearingType: 'Writ Petition Admission & Stay',
+    hearingTypeHi: 'रिट याचिका प्रवेश और स्थगन बहस',
+    assignedAdvocate: 'Adv. Priya Malhotra',
+    purpose: 'Urgent interim stay on demolition order pending statutory eligibility survey',
+    purposeHi: 'पुनर्वास सर्वेक्षण तक तोड़फोड़ नोटिस पर अंतरिम रोक',
+    status: 'Upcoming',
+    requiredDocuments: [
+      'DUSIB Cluster Eligibility List Extract',
+      'Geotagged photographs of residential premises prior to notice'
+    ],
+    requiredDocumentsHi: [
+      'DUSIB बस्ती पात्रता सूची का उद्धरण',
+      'नोटिस पूर्व आवासीय परिसर की जियोटैग्ड तस्वीरें'
+    ],
+    preparednessStatus: 'Ready'
+  }
+];
+
+export const mockTasks: Task[] = [
+  {
+    id: 'TSK-2026-01',
+    caseId: 'ALT-2026-104',
+    caseClientName: 'Rameshwar Prasad',
+    caseClientNameHi: 'रामेश्वर प्रसाद',
+    title: 'Obtain certified copy of Tihar Jail custody certificate',
+    titleHi: 'तिहाड़ जेल से प्रमाणित हिरासत प्रमाण पत्र प्राप्त करें',
+    dueDate: 'Today, 10:30 AM',
+    dueDateHi: 'आज, सुबह 10:30 बजे',
+    status: 'Pending',
+    priority: 'Urgent',
+    assignedTo: 'Sunil Kumar (Field Lead)',
+    category: 'Verification',
+    categoryHi: 'सत्यापन'
+  },
+  {
+    id: 'TSK-2026-02',
+    caseId: 'ALT-2026-104',
+    caseClientName: 'Rameshwar Prasad',
+    caseClientNameHi: 'रामेश्वर प्रसाद',
+    title: 'Pre-hearing client conference with surety in Tis Hazari Bar Room',
+    titleHi: 'तीस हजारी बार रूम में जामिनदार के साथ सुनवाई पूर्व बैठक',
+    dueDate: 'Today, 11:00 AM',
+    dueDateHi: 'आज, सुबह 11:00 बजे',
+    status: 'Pending',
+    priority: 'High',
+    assignedTo: 'Adv. Priya Malhotra',
+    category: 'Client Contact',
+    categoryHi: 'मुवक्किल संपर्क'
+  },
+  {
+    id: 'TSK-2026-03',
+    caseId: 'ALT-2026-108',
+    caseClientName: 'Sunita Devi',
+    caseClientNameHi: 'सुनीता देवी',
+    title: 'Draft rejoinder affidavit on income disclosure',
+    titleHi: 'आय प्रकटीकरण पर प्रत्युत्तर हलफनामा तैयार करें',
+    dueDate: 'Tomorrow, 05:00 PM',
+    dueDateHi: 'कल, शाम 05:00 बजे',
+    status: 'In Progress',
+    priority: 'High',
+    assignedTo: 'Adv. Priya Malhotra',
+    category: 'Filing',
+    categoryHi: 'फाइलिंग'
+  },
+  {
+    id: 'TSK-2026-04',
+    caseId: 'ALT-2026-112',
+    caseClientName: 'Mohammad Irfan',
+    caseClientNameHi: 'मोहम्मद इरफ़ान',
+    title: 'Collect pending bank statements for 3 migrant workers',
+    titleHi: '3 प्रवासी श्रमिकों के लंबित बैंक विवरण एकत्र करें',
+    dueDate: '25 Aug 2026',
+    dueDateHi: '25 अगस्त 2026',
+    status: 'Pending',
+    priority: 'Medium',
+    assignedTo: 'Sunil Kumar (Field Lead)',
+    category: 'Document',
+    categoryHi: 'दस्तावेज़'
+  },
+  {
+    id: 'TSK-2026-05',
+    caseId: 'ALT-2026-115',
+    caseClientName: 'Laxmi Bai',
+    caseClientNameHi: 'लक्ष्मी बाई',
+    title: 'Compile 10-year electricity bills proving continuous occupation',
+    titleHi: 'लगातार निवास साबित करने वाले 10 साल के बिजली बिल संकलित करें',
+    dueDate: '27 Aug 2026',
+    dueDateHi: '27 अगस्त 2026',
+    status: 'In Progress',
+    priority: 'High',
+    assignedTo: 'Meenakshi Rao',
+    category: 'Verification',
+    categoryHi: 'सत्यापन'
+  },
+  {
+    id: 'TSK-2026-06',
+    caseId: 'ALT-2026-121',
+    caseClientName: 'Vikas Anand',
+    caseClientNameHi: 'विकास आनंद',
+    title: 'Follow up with Government Senior Secondary School for re-enrollment letter',
+    titleHi: 'पुनः प्रवेश पत्र के लिए सरकारी स्कूल से संपर्क करें',
+    dueDate: '30 Aug 2026',
+    dueDateHi: '30 अगस्त 2026',
+    status: 'Completed',
+    priority: 'Medium',
+    assignedTo: 'Sunil Kumar (Field Lead)',
+    category: 'Client Contact',
+    categoryHi: 'मुवक्किल संपर्क'
+  },
+  {
+    id: 'TSK-2026-07',
+    caseId: 'ALT-2026-129',
+    caseClientName: 'Rekha Sharma',
+    caseClientNameHi: 'रेखा शर्मा',
+    title: 'Submit application for mechanical inspection report to Rohini Traffic Police',
+    titleHi: 'रोहिणी ट्रैफिक पुलिस को वाहन निरीक्षण रिपोर्ट का आवेदन जमा करें',
+    dueDate: '04 Sep 2026',
+    dueDateHi: '04 सितंबर 2026',
+    status: 'Pending',
+    priority: 'Low',
+    assignedTo: 'Meenakshi Rao',
+    category: 'Research',
+    categoryHi: 'अनुसंधान'
+  }
+];
+
+export const mockDocuments: DocumentItem[] = [
+  {
+    id: 'DOC-01',
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    title: 'Regular Bail Application under Sec 436A CrPC',
+    titleHi: 'धारा 436A CrPC के तहत नियमित जमानत अर्जी',
+    category: 'Petition',
+    categoryHi: 'याचिका',
+    uploadedDate: '12 Jan 2026',
+    uploadedDateHi: '12 जनवरी 2026',
+    status: 'Verified',
+    fileSize: '1.4 MB',
+    uploadedBy: 'Adv. Priya Malhotra'
+  },
+  {
+    id: 'DOC-02',
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    title: 'FIR No. 412/2023 Copy & Charge Sheet Extract',
+    titleHi: 'प्राथमिकी (FIR) प्रति व चार्जशीट अंश',
+    category: 'FIR',
+    categoryHi: 'एफआईआर',
+    uploadedDate: '14 Jan 2026',
+    uploadedDateHi: '14 जनवरी 2026',
+    status: 'Verified',
+    fileSize: '3.2 MB',
+    uploadedBy: 'Sunil Kumar'
+  },
+  {
+    id: 'DOC-03',
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    title: 'Certified Tihar Jail Custody Duration Certificate',
+    titleHi: 'तिहाड़ जेल प्रमाणित हिरासत अवधि प्रमाण पत्र',
+    category: 'Court Order',
+    categoryHi: 'अदालती आदेश',
+    uploadedDate: 'Pending Verification',
+    uploadedDateHi: 'सत्यापन बाकी',
+    status: 'Missing / Action Required',
+    fileSize: '--',
+    uploadedBy: 'Action Required',
+    uploadedByHi: 'कार्रवाई आवश्यक'
+  },
+  {
+    id: 'DOC-04',
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    title: 'Surety Guarantor Aadhar & Electricity Bill',
+    titleHi: 'जामिनदार आधार कार्ड व बिजली बिल',
+    category: 'Identity / Aadhar',
+    categoryHi: 'पहचान / आधार',
+    uploadedDate: '18 Feb 2026',
+    uploadedDateHi: '18 फरवरी 2026',
+    status: 'Verified',
+    fileSize: '840 KB',
+    uploadedBy: 'Sunil Kumar'
+  },
+  {
+    id: 'DOC-05',
+    caseId: 'ALT-2026-108',
+    clientName: 'Sunita Devi',
+    clientNameHi: 'सुनीता देवी',
+    title: 'Domestic Incident Report (DIR Form 1)',
+    titleHi: 'घरेलू घटना रिपोर्ट (DIR फॉर्म 1)',
+    category: 'Affidavit',
+    categoryHi: 'हलफनामा',
+    uploadedDate: '04 Feb 2026',
+    uploadedDateHi: '04 फरवरी 2026',
+    status: 'Verified',
+    fileSize: '2.1 MB',
+    uploadedBy: 'Meenakshi Rao'
+  },
+  {
+    id: 'DOC-06',
+    caseId: 'ALT-2026-108',
+    clientName: 'Sunita Devi',
+    clientNameHi: 'सुनीता देवी',
+    title: 'Respondent Asset & Salary Slip Disclosure',
+    titleHi: 'प्रतिवादी संपत्ति एवं वेतन पर्ची प्रकटीकरण',
+    category: 'Affidavit',
+    categoryHi: 'हलफनामा',
+    uploadedDate: '19 Feb 2026',
+    uploadedDateHi: '19 फरवरी 2026',
+    status: 'Pending Review',
+    fileSize: '1.8 MB',
+    uploadedBy: 'Adv. Priya Malhotra'
+  },
+  {
+    id: 'DOC-07',
+    caseId: 'ALT-2026-112',
+    clientName: 'Mohammad Irfan',
+    clientNameHi: 'मोहम्मद इरफ़ान',
+    title: 'Workmen Wage Arrears Ledger & Muster Roll',
+    titleHi: 'श्रमिक मजदूरी बकाया खाता व मस्टर रोल',
+    category: 'Petition',
+    categoryHi: 'याचिका',
+    uploadedDate: '18 Feb 2026',
+    uploadedDateHi: '18 फरवरी 2026',
+    status: 'Pending Review',
+    fileSize: '4.5 MB',
+    uploadedBy: 'Sunil Kumar'
+  },
+  {
+    id: 'DOC-08',
+    caseId: 'ALT-2026-115',
+    clientName: 'Laxmi Bai',
+    clientNameHi: 'लक्ष्मी बाई',
+    title: 'DDA Demolition Notice & Cluster Exemption Claim',
+    titleHi: 'डीडीए बेदखली नोटिस व बस्ती छूट दावा',
+    category: 'Court Order',
+    categoryHi: 'अदालती आदेश',
+    uploadedDate: '28 Jan 2026',
+    uploadedDateHi: '28 जनवरी 2026',
+    status: 'Verified',
+    fileSize: '1.2 MB',
+    uploadedBy: 'Adv. Priya Malhotra'
+  }
+];
+
+export const mockNotes: CaseNote[] = [
+  {
+    id: 'NOTE-01',
+    caseId: 'ALT-2026-104',
+    author: 'Adv. Priya Malhotra',
+    role: 'Lead Legal Aid Counsel',
+    roleHi: 'मुख्य कानूनी सहायता अधिवक्ता',
+    date: '19 Feb 2026, 04:30 PM',
+    dateHi: '19 फरवरी 2026, शाम 04:30',
+    category: 'Strategy Note',
+    categoryHi: 'रणनीति टिप्पणी',
+    content: 'Reviewed Hon\'ble Supreme Court ruling in Satender Kumar Antil v. CBI (2022) regarding statutory right to bail when undertrial exceeds statutory limits. Benchmark custody argument is strong. Must emphasize that trial delay is not attributable to the accused.',
+    contentHi: 'सुप्रीम कोर्ट के सतिंदर कुमार अंतिल बनाम सीबीआई (2022) निर्णय की समीक्षा की। वैधानिक हिरासत सीमा पार होने पर जमानत का अधिकार प्रबल है। यह स्पष्ट करना आवश्यक है कि मुकदमे में देरी आरोपी के कारण नहीं हुई।'
+  },
+  {
+    id: 'NOTE-02',
+    caseId: 'ALT-2026-104',
+    author: 'Sunil Kumar',
+    role: 'Field Paralegal',
+    roleHi: 'फील्ड पैरालीगल',
+    date: '18 Feb 2026, 11:15 AM',
+    dateHi: '18 फरवरी 2026, सुबह 11:15',
+    category: 'Client Interview',
+    categoryHi: 'मुवक्किल साक्षात्कार',
+    content: 'Met client\'s elder brother in Rohini. Verified local residence and collected original Aadhar card for surety bond. Brother confirmed he is willing to stand as surety and present original electricity bill in court.',
+    contentHi: 'रोहिणी में मुवक्किल के बड़े भाई से मुलाकात की। स्थानीय निवास का सत्यापन किया और जामिनदार मुचलके के लिए आधार कार्ड एकत्र किया। भाई अदालत में जामिनदार बनने को तैयार है।'
+  },
+  {
+    id: 'NOTE-03',
+    caseId: 'ALT-2026-104',
+    author: 'Adv. Priya Malhotra',
+    role: 'Lead Legal Aid Counsel',
+    roleHi: 'मुख्य कानूनी सहायता अधिवक्ता',
+    date: '15 Jan 2026, 02:45 PM',
+    dateHi: '15 जनवरी 2026, दोपहर 02:45',
+    category: 'Court Proceedings',
+    categoryHi: 'अदालती कार्यवाही',
+    content: 'Matter listed before Ld. Duty Magistrate. Transferred to Special Court for trial scheduling. Charge sheet supplied under Sec 207 CrPC.',
+    contentHi: 'मामला ड्यूटी मजिस्ट्रेट के समक्ष सूचीबद्ध था। सुनवाई निर्धारण हेतु विशेष अदालत में स्थानांतरित किया गया। धारा 207 CrPC के तहत चार्जशीट प्रति प्रदान की गई।'
+  }
+];
+
+export const mockActivities: ActivityItem[] = [
+  {
+    id: 'ACT-01',
+    caseId: 'ALT-2026-104',
+    timestamp: 'Today, 08:30 AM',
+    timestampHi: 'आज, सुबह 08:30 बजे',
+    user: 'Adv. Priya Malhotra',
+    role: 'Lead Counsel',
+    roleHi: 'मुख्य अधिवक्ता',
+    action: 'Prepared hearing docket for Section 436A bail arguments.',
+    actionHi: 'धारा 436A जमानत बहस के लिए सुनवाई डॉकेट तैयार किया।',
+    type: 'hearing'
+  },
+  {
+    id: 'ACT-02',
+    caseId: 'ALT-2026-104',
+    timestamp: '19 Feb 2026',
+    timestampHi: '19 फरवरी 2026',
+    user: 'Sunil Kumar',
+    role: 'Field Paralegal',
+    roleHi: 'फील्ड पैरालीगल',
+    action: 'Attached verified surety documentation and guarantor identity.',
+    actionHi: 'सत्यापित जामिनदार दस्तावेज और पहचान पत्र संलग्न किए।',
+    type: 'document'
+  },
+  {
+    id: 'ACT-03',
+    caseId: 'ALT-2026-104',
+    timestamp: '15 Feb 2026',
+    timestampHi: '15 फरवरी 2026',
+    user: 'System',
+    role: 'Automated Alert',
+    roleHi: 'स्वचालित अलर्ट',
+    action: 'Lifecycle advanced to Hearing stage following case docket completion.',
+    actionHi: 'केस डॉकेट पूरा होने पर जीवनचक्र चरण "अदालत सुनवाई" में उन्नत किया गया।',
+    type: 'status'
+  },
+  {
+    id: 'ACT-04',
+    caseId: 'ALT-2026-104',
+    timestamp: '12 Jan 2026',
+    timestampHi: '12 जनवरी 2026',
+    user: 'Adv. Rajesh Verma',
+    role: 'Intake Advocate',
+    roleHi: 'इंटेक अधिवक्ता',
+    action: 'Completed legal aid intake assessment and registered case ALT-2026-104.',
+    actionHi: 'कानूनी सहायता मूल्यांकन पूरा कर केस ALT-2026-104 दर्ज किया।',
+    type: 'note'
+  }
+];
+
+export const mockSpreadsheetRows: RawSpreadsheetRow[] = [
+  {
+    id: 1,
+    clientName: 'Rameshwar Prasad',
+    clientNameHi: 'रामेश्वर प्रसाद',
+    caseNumber: 'BAIL/2026/041',
+    courtName: 'Tis Hazari District Court',
+    courtNameHi: 'तीस हजारी जिला न्यायालय',
+    status: 'Hearing Listed',
+    statusHi: 'सुनवाई सूचीबद्ध',
+    nextHearing: '2026-08-21',
+    nextHearingHi: '21 अगस्त 2026',
+    advocate: 'Priya Malhotra',
+    caseType: 'Undertrial Bail (436A)',
+    caseTypeHi: 'विचाराधीन कैदी जमानत (436A)',
+    phone: '9811245890',
+    notes: 'Tihar jail certificate urgent'
+  },
+  {
+    id: 2,
+    clientName: 'Sunita Devi',
+    clientNameHi: 'सुनीता देवी',
+    caseNumber: 'DV/2026/108',
+    courtName: 'Karkardooma Court',
+    courtNameHi: 'कड़कड़डूमा न्यायालय',
+    status: 'Rejoinder Due',
+    statusHi: 'प्रत्युत्तर लंबित',
+    nextHearing: '2026-08-24',
+    nextHearingHi: '24 अगस्त 2026',
+    advocate: 'Priya Malhotra',
+    caseType: 'Domestic Violence Sec 12',
+    caseTypeHi: 'घरेलू हिंसा धारा 12',
+    phone: '9423187654',
+    notes: 'School fee bills attached'
+  },
+  {
+    id: 3,
+    clientName: 'Mohammad Irfan & Ors',
+    clientNameHi: 'मोहम्मद इरफ़ान व अन्य',
+    caseNumber: 'LC/2026/882',
+    courtName: 'Rouse Avenue Labour Court',
+    courtNameHi: 'राउज एवेन्यू श्रम न्यायालय',
+    status: 'Evidence Stage',
+    statusHi: 'साक्ष्य चरण',
+    nextHearing: '2026-08-28',
+    nextHearingHi: '28 अगस्त 2026',
+    advocate: 'Rajesh Verma',
+    caseType: 'Wage Recovery Claim',
+    caseTypeHi: 'मजदूरी वसूली दावा',
+    phone: '8790123412',
+    notes: 'Need 3 more worker signs'
+  },
+  {
+    id: 4,
+    clientName: 'Laxmi Bai',
+    clientNameHi: 'लक्ष्मी बाई',
+    caseNumber: 'WP(C)/2026/912',
+    courtName: 'Delhi High Court',
+    courtNameHi: 'दिल्ली उच्च न्यायालय',
+    status: 'Stay Application',
+    statusHi: 'स्थगन याचिका',
+    nextHearing: '2026-09-02',
+    nextHearingHi: '02 सितंबर 2026',
+    advocate: 'Priya Malhotra',
+    caseType: 'Slum Eviction Stay',
+    caseTypeHi: 'बस्ती बेदखली स्थगन',
+    phone: '9718890123',
+    notes: 'Electricity bills prior 2015'
+  },
+  {
+    id: 5,
+    clientName: 'Vikas Anand',
+    clientNameHi: 'विकास आनंद',
+    caseNumber: 'JJB/2026/014',
+    courtName: 'JJB Kingsway Camp',
+    courtNameHi: 'किशोर न्याय बोर्ड किंग्सवे कैंप',
+    status: 'Compliance Monitored',
+    statusHi: 'अनुपालन निगरानी',
+    nextHearing: '2026-09-07',
+    nextHearingHi: '07 सितंबर 2026',
+    advocate: 'Rajesh Verma',
+    caseType: 'Juvenile Justice Inquiry',
+    caseTypeHi: 'किशोर न्याय बोर्ड जांच',
+    phone: '9958165432',
+    notes: 'School readmission verification'
+  }
+];
+
+export const mockAIInsights: Record<string, AIInsightData> = {
+  'ALT-2026-104': {
+    caseId: 'ALT-2026-104',
+    clientName: 'Rameshwar Prasad',
+    summary: 'The client Rameshwar Prasad has been detained in continuous judicial custody since March 14, 2023 under IPC 379/411. The maximum statutory sentence for the charged offense is 36 months (3 years). The undertrial has currently served 35 months and 7 days (>97% of maximum sentence) without formal framing of trial charges. This constitutes a direct invocation threshold under Section 436A CrPC / Sec 479 of the Bharatiya Nagarik Suraksha Sanhita (BNSS), entitling the client to mandatory release on personal bond.',
+    summaryHi: 'मुवक्किल रामेश्वर प्रसाद 14 मार्च 2023 से लगातार न्यायिक हिरासत में हैं। संबंधित धारा (IPC 379/411) के तहत अधिकतम 3 वर्ष (36 माह) की सजा है, जिसमें से मुवक्किल 35 महीने से अधिक हिरासत भुगत चुके हैं। यह धारा 436A CrPC / 479 BNSS के तहत अनिवार्य व्यक्तिगत मुचलके पर जमानत का स्पष्ट मामला है।',
+    keyFacts: [
+      'Accused arrested on 14 March 2023; FIR No. 412/2023 registered at PS Rohini.',
+      'Charge sheet filed on 10 June 2023; charges have not been framed for over 2.5 years due to prosecution adjournments.',
+      'No history of prior convictions or bail jumping in Delhi or NCR jurisdictions.',
+      'Co-accused was granted regular bail on parity by Sessions Court in Nov 2024.',
+      'Client belongs to economically weaker section; single earning member of a family of four.'
+    ],
+    keyFactsHi: [
+      'आरोपी 14 मार्च 2023 को गिरफ्तार; प्राथमिकी संख्या 412/2023 थाना रोहिणी।',
+      '10 जून 2023 को चार्जशीट दाखिल; अभियोजन पक्ष के स्थगन के कारण 2.5 साल से आरोप तय नहीं हुए।',
+      'दिल्ली या एनसीआर में पूर्व आपराधिक रिकॉर्ड या जमानत उल्लंघन का कोई इतिहास नहीं।',
+      'सह-आरोपी को नवंबर 2024 में सत्र न्यायालय द्वारा समानता (पैरिटी) पर जमानत दी गई थी।',
+      'मुवक्किल आर्थिक रूप से कमजोर वर्ग से है; चार सदस्यीय परिवार का एकमात्र कमाने वाला सदस्य।'
+    ],
+    importantDates: [
+      { event: 'Date of Arrest & Remand', eventHi: 'गिरफ्तारी एवं न्यायिक रिमांड तिथि', date: '14 March 2023', dateHi: '14 मार्च 2023', criticality: 'High' },
+      { event: '50% Custody Milestone (Sec 436A threshold)', eventHi: '50% हिरासत सीमा (धारा 436A मानक)', date: '14 Sept 2024', dateHi: '14 सितंबर 2024', criticality: 'High' },
+      { event: 'Charge Sheet Filing Date', eventHi: 'चार्जशीट दाखिल करने की तिथि', date: '10 June 2023', dateHi: '10 जून 2023', criticality: 'Medium' },
+      { event: 'Scheduled Bail Argument Hearing', eventHi: 'निर्धारित जमानत बहस सुनवाई', date: 'Today, 11:30 AM', dateHi: 'आज, सुबह 11:30 बजे', criticality: 'High' },
+      { event: 'Maximum Statutory Penalty Cap (36 Mos)', eventHi: 'अधिकतम वैधानिक सजा सीमा (36 माह)', date: '14 March 2026', dateHi: '14 मार्च 2026', criticality: 'High' }
+    ],
+    missingInformation: [
+      'Official Custody Certificate sealed by Tihar Jail Superintendent (required by Judge Bench 3).',
+      'Formal acknowledgment from SHO Rohini confirming local address verification of surety.',
+      'Clarification on whether trial committal proceedings were formally concluded.'
+    ],
+    missingInformationHi: [
+      'तिहाड़ जेल अधीक्षक द्वारा मुहरबंद आधिकारिक हिरासत प्रमाण पत्र (जज बेंच 3 द्वारा अपेक्षित)।',
+      'जामिनदार के स्थानीय पते के सत्यापन की पुष्टि करने वाली एसएचओ रोहिणी की रसीद।',
+      'मुकदमा सुपुर्दगी (कमिटाल) कार्यवाही औपचारिक रूप से पूर्ण होने का स्पष्टीकरण।'
+    ],
+    pendingDocuments: [
+      'Certified copy of Custody Certificate from Jail No. 4',
+      'Affidavit of Surety with self-attested electricity bill',
+      'Citation compilation: Satender Kumar Antil (2022) & Hussainara Khatoon'
+    ],
+    pendingDocumentsHi: [
+      'जेल नंबर 4 से हिरासत प्रमाण पत्र की प्रमाणित प्रति',
+      'बिजली बिल के साथ जामिनदार का हलफनामा',
+      'सुप्रीम कोर्ट के निर्णयों का संकलन (सतिंदर कुमार अंतिल व हुसैनेरा खातून)'
+    ],
+    suggestedNextActions: [
+      {
+        title: 'Tender Section 436A / Sec 479 BNSS Custody Memo during 11:30 AM call',
+        titleHi: 'सुबह 11:30 बजे की सुनवाई में धारा 436A / 479 BNSS हिरासत ज्ञापन प्रस्तुत करें',
+        rationale: 'The court is bound by statutory mandate to order release on personal bond when custody exceeds 50% without delay caused by defense.',
+        rationaleHi: 'जब बिना बचाव पक्ष की देरी के 50% से अधिक हिरासत हो जाती है, तो अदालत व्यक्तिगत मुचलके पर रिहाई का आदेश देने के लिए बाध्य है।',
+        impact: 'High Probability of Immediate Bail Order',
+        impactHi: 'तत्काल जमानत आदेश की प्रबल संभावना',
+        recommendedTimeframe: 'Within 2 hours (Before hearing commences)',
+        recommendedTimeframeHi: '2 घंटे के भीतर (सुनवाई शुरू होने से पहले)'
+      },
+      {
+        title: 'Submit Personal Bond waiver if surety financial proof is contested',
+        titleHi: 'यदि जामिनदार के वित्तीय साक्ष्य पर आपत्ति हो तो व्यक्तिगत मुचलका छूट अर्जी दें',
+        rationale: 'Under Moti Ram v. State of MP, excessive surety requirements cannot defeat the mandate of legal aid and undertrial liberty.',
+        rationaleHi: 'मोती राम बनाम मध्य प्रदेश राज्य के तहत अत्यधिक जमानत राशि कानूनी सहायता और कैदी की स्वतंत्रता को बाधित नहीं कर सकती।',
+        impact: 'Prevents post-bail release delay for indigent client',
+        impactHi: 'निर्धन मुवक्किल की रिहाई में होने वाली देरी से बचाव',
+        recommendedTimeframe: 'Same Day Filing',
+        recommendedTimeframeHi: 'उसी दिन फाइलिंग'
+      }
+    ]
+  }
+};
