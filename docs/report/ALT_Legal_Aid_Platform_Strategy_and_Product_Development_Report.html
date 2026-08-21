@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project ALT - Product Adoption and 4-Week Pilot Strategy</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 22mm 24mm 22mm 24mm;
+    @top-right {
+      content: "Project ALT | Product Adoption and 4-Week Pilot Strategy";
+      font-family: "Times New Roman", Times, serif;
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #333333;
+    }
+    @bottom-left {
+      content: "Prepared by Gagandeep Singh";
+      font-family: "Times New Roman", Times, serif;
+      font-size: 8.5pt;
+      color: #555555;
+    }
+    @bottom-right {
+      content: "Page " counter(page);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 8.5pt;
+      color: #333333;
+    }
+  }
+
+  @page:first {
+    margin: 0;
+    @top-right { content: normal; }
+    @bottom-left { content: normal; }
+    @bottom-right { content: normal; }
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 9.5pt;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0 0 6pt 0;
+  }
+
+  /* Page Break Utilities */
+  .page-break {
+    break-before: page;
+    page-break-before: always;
+  }
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Cover Page */
+  .cover-page {
+    height: 100vh;
+    min-height: 297mm;
+    padding: 45mm 30mm 35mm 30mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  .cover-header {
+    margin-top: 20mm;
+  }
+
+  .cover-institution {
+    font-size: 12.5pt;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 12pt;
+  }
+
+  .cover-divider {
+    width: 60mm;
+    height: 1.5pt;
+    background-color: #000000;
+    margin: 0 auto 16pt auto;
+  }
+
+  .cover-title {
+    font-size: 18pt;
+    font-weight: bold;
+    line-height: 1.25;
+    color: #000000;
+    margin: 0 0 10pt 0;
+  }
+
+  .cover-subtitle {
+    font-size: 11pt;
+    font-style: italic;
+    color: #333333;
+    max-width: 140mm;
+    margin: 0 auto 18pt auto;
+    line-height: 1.35;
+  }
+
+  .cover-center-block {
+    margin: 15mm auto;
+    max-width: 135mm;
+    border-top: 0.5pt solid #888888;
+    border-bottom: 0.5pt solid #888888;
+    padding: 12pt 0;
+    font-size: 9pt;
+    color: #222222;
+    line-height: 1.4;
+  }
+
+  .cover-footer {
+    margin-bottom: 12mm;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: #111111;
+  }
+
+  .cover-author {
+    font-weight: bold;
+    font-size: 10.5pt;
+  }
+
+  /* Typography */
+  h1.section-title {
+    font-size: 12.5pt;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    border-bottom: 1pt solid #000000;
+    padding-bottom: 3pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    letter-spacing: 0.02em;
+  }
+
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 9pt;
+    margin-bottom: 4pt;
+  }
+
+  h3 {
+    font-size: 10pt;
+    font-weight: bold;
+    font-style: italic;
+    color: #111111;
+    margin-top: 7pt;
+    margin-bottom: 3pt;
+  }
+
+  /* Formal Table of Contents */
+  .toc-title {
+    font-size: 12.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1pt solid #000000;
+    padding-bottom: 3pt;
+    margin-bottom: 10pt;
+    text-align: left;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 9.5pt;
+    margin-bottom: 4.5pt;
+    line-height: 1.25;
+  }
+
+  .toc-entry-num {
+    font-weight: bold;
+    min-width: 22pt;
+  }
+
+  .toc-entry-text {
+    flex-grow: 1;
+    border-bottom: 1pt dotted #777777;
+    margin: 0 6pt 0 4pt;
+    position: relative;
+    top: -2pt;
+  }
+
+  .toc-entry-title {
+    font-weight: normal;
+  }
+
+  .toc-entry-page {
+    font-weight: bold;
+    min-width: 15pt;
+    text-align: right;
+  }
+
+  /* Classification & Note Boxes */
+  .formal-box {
+    border: 0.75pt solid #666666;
+    background-color: #fcfcfc;
+    padding: 6pt 9pt;
+    margin: 7pt 0 9pt 0;
+    font-size: 8.5pt;
+    line-height: 1.35;
+  }
+
+  .formal-box-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+    margin-bottom: 3pt;
+    color: #111111;
+    border-bottom: 0.5pt solid #cccccc;
+    padding-bottom: 2pt;
+  }
+
+  /* Tables */
+  table.formal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 7pt 0 9pt 0;
+    font-size: 8.5pt;
+    line-height: 1.3;
+  }
+
+  table.formal-table th, table.formal-table td {
+    border: 0.5pt solid #444444;
+    padding: 4.5pt 6.5pt;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  table.formal-table th {
+    background-color: #eeeeee;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.02em;
+  }
+
+  table.formal-table tr:nth-child(even) td {
+    background-color: #fafafa;
+  }
+
+  /* Figure & Diagram Containers */
+  .figure-container {
+    margin: 8pt 0 10pt 0;
+    text-align: center;
+    border: 0.5pt solid #bbbbbb;
+    background-color: #fafafa;
+    padding: 7pt;
+  }
+
+  .figure-caption {
+    font-size: 8pt;
+    font-style: italic;
+    color: #222222;
+    margin-top: 4pt;
+    text-align: center;
+  }
+
+  /* List formatting */
+  ul, ol {
+    margin: 0 0 6pt 0;
+    padding-left: 18pt;
+    font-size: 9pt;
+  }
+
+  li {
+    margin-bottom: 2.5pt;
+    text-align: justify;
+  }
+
+  .tag-label {
+    font-size: 7.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333333;
+  }
+
+  /* Clickable Link Styling */
+  a.formal-link {
+    color: #0f3b74;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  a.formal-link:hover {
+    color: #082142;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ========================================== -->
+<!-- COVER PAGE -->
+<!-- ========================================== -->
+<div class="cover-page">
+  <div class="cover-header">
+    <div class="cover-institution">PROJECT ALT &bull; ACCESS TO LEGAL AID THROUGH TECHNOLOGY</div>
+    <div class="cover-divider"></div>
+    <div class="cover-title">PRODUCT ADOPTION AND<br>4-WEEK PILOT STRATEGY</div>
+    <div class="cover-subtitle">
+      A Strategic Report on Integrating the ALT Legal Aid Platform into Daily Operational Workflows Across Delhi Prison Operations
+    </div>
+  </div>
+
+  <div class="cover-center-block">
+    <strong>Focus Area:</strong> Pretrial Detention Defense &bull; Workflow Integration &bull; Change Management<br>
+    <strong>Target Geography:</strong> Tihar, Rohini, and Mandoli Prison Operations (New Delhi)<br>
+    <strong>Stated Platform Goal:</strong> Tracking Toward 1,000,000 Days of Incarceration Saved<br>
+    <strong>Implementation Artifact:</strong> Functional Interactive Product Prototype &amp; Public Demonstration
+  </div>
+
+  <div class="cover-footer">
+    <div>Prepared by:</div>
+    <div class="cover-author">Gagandeep Singh</div>
+    <div style="font-size: 9pt; color: #444444; margin-top: 2pt;">Strategy &amp; Product Development Assignment</div>
+    <div style="margin-top: 8pt; font-size: 9pt; color: #555555;">August 2026</div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- TABLE OF CONTENTS -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+
+<div class="toc-title">Table of Contents</div>
+
+<div class="toc-list avoid-break">
+  <div class="toc-entry">
+    <span class="toc-entry-num">1.</span>
+    <span class="toc-entry-title">Executive Summary</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">2</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">2.</span>
+    <span class="toc-entry-title">Understanding the Current ALT Platform</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">3</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">3.</span>
+    <span class="toc-entry-title">The Product Adoption Problem</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">4</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">4.</span>
+    <span class="toc-entry-title">Why Adoption Is Currently Low</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">4</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">5.</span>
+    <span class="toc-entry-title">Proposed Adoption Strategy</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">5</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">6.</span>
+    <span class="toc-entry-title">Role-Based Workflow Integration</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">5</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">7.</span>
+    <span class="toc-entry-title">Four-Week Pilot Plan</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">6</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">8.</span>
+    <span class="toc-entry-title">Spreadsheet Transition Strategy</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">7</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">9.</span>
+    <span class="toc-entry-title">Adoption Rituals and Feedback Loop</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">7</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">10.</span>
+    <span class="toc-entry-title">Success Metrics and Evaluation Framework</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">8</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">11.</span>
+    <span class="toc-entry-title">Go / Modify / Stop Decision Framework</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">8</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">12.</span>
+    <span class="toc-entry-title">Product Prototype and Implementation Demonstration</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">9</span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-entry-num">13.</span>
+    <span class="toc-entry-title">Conclusion</span>
+    <span class="toc-entry-text"></span>
+    <span class="toc-entry-page">11</span>
+  </div>
+</div>
+
+<div class="formal-box avoid-break" style="margin-top: 14pt;">
+  <div class="formal-box-title">Information Classification and Epistemological Framework</div>
+  To preserve analytical rigor and academic integrity, all statements within this report are categorized into five distinct evidential classes:
+  <ul style="margin: 4pt 0 0 0; padding-left: 14pt; font-size: 8.5pt;">
+    <li><strong>[Verified Fact]:</strong> Directly observed on the live Project ALT platform (<code>https://altindia.base44.app/demo</code>) or explicitly stated in organizational project briefs.</li>
+    <li><strong>[Strategic Recommendation]:</strong> Methodological change-management frameworks, rollout phases, and operational rituals proposed to achieve user adoption.</li>
+    <li><strong>[Pilot Assumption]:</strong> Scoping parameters and baseline operational estimates established for pilot planning.</li>
+    <li><strong>[Proposed Target]:</strong> Quantitative threshold benchmarks defining pilot success criteria.</li>
+    <li><strong>[Implementation Demonstration]:</strong> Functional product artifacts and workflows independently engineered to demonstrate and test the practical viability of the strategic recommendations.</li>
+  </ul>
+</div>
+
+<!-- ========================================== -->
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<!-- ========================================== -->
+<h1 class="section-title">1. Executive Summary</h1>
+
+<p>
+  <strong>Project ALT (Access to Legal Aid through Technology)</strong> operates as a targeted legal aid initiative assisting undertrial prisoners across three prison complexes in Delhi: <strong>Tihar, Rohini, and Mandoli</strong>. The platform explicitly highlights a stated North Star mission metric &mdash; <strong>Days of Incarceration Saved</strong> &mdash; with an organizational aspiration of tracking toward <strong>1,000,000 days of pretrial incarceration prevented</strong>.
+</p>
+
+<p>
+  A functional, AI-enabled software platform has already been built and deployed to support this mission. The platform incorporates end-to-end case tracking, document collection checklists, AI-assisted legal charge decoding (BNS/IPC), automated bail strategy drafting, and volunteer lawyer matching. However, <strong>the platform is not yet in real use by the ground team</strong>. The small team &mdash; comprising legal associates, field associates, and social workers &mdash; splits its time between field visits and desk operations, continuing to manage casework, client interactions, and court tracking across spreadsheets, telephone logs, and physical notebooks.
+</p>
+
+<p>
+  This report provides a formal <strong>1-Month Product Adoption and Pilot Strategy</strong>. The strategic approach is grounded in an operational principle: <em>The platform must not force the ground team to alter their core defense work; rather, the software must be incrementally embedded into existing field and desk routines while providing immediate, tangible value to the legal team.</em> By establishing structured desk rituals, activating AI bail drafting tools early, and implementing a 3-stage safe deprecation of spreadsheets, Project ALT can transition the platform into the primary operational system of record while substantially mitigating operational risks to active legal casework. To demonstrate how these recommendations can be concretely operationalized, an interactive product prototype has been independently developed and publicly deployed as detailed in Section 12.
+</p>
+
+<!-- ========================================== -->
+<!-- SECTION 2: UNDERSTANDING CURRENT PLATFORM -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">2. Understanding the Current ALT Platform</h1>
+
+<p>
+  <span class="tag-label">[Verified Fact]</span> An empirical evaluation of the live platform at <code>https://altindia.base44.app/demo</code> reveals a functional system organized around six global case stages and four primary modules:
+</p>
+
+<p>
+  <strong>1. Executive Dashboard (<code>/demo</code>):</strong> Provides macro-level tracking of active caseloads (2,773 cases), stage distribution (Documentation: 1,401; Case Decoding: 1,051; Bail Strategy: 323), resolution rates (66% bail granted), and partner legal capacity (169 available out of 241 registered advocates).
+</p>
+
+<p>
+  <strong>2. Case Inventory and Intake (<code>/demo/cases</code>):</strong> A centralized repository supporting both List and Kanban Board views. It incorporates multi-criteria filtering by trial stage, call status, and Category B statutory eligibility (identifying prisoners eligible under Section 436A CrPC / Section 479 BNSS). A structured <code>+ New Case Intake</code> modal captures prisoner demographics, facility details, arrest dates, family contact points, and applicable legal sections.
+</p>
+
+<p>
+  <strong>3. Case File 360&deg; Hub:</strong> An individual case workbench structured into eight functional tabs: (i) <em>Overview</em> (demographics, timeline, incarceration impact, socioeconomic debt status); (ii) <em>Documentation</em> (9-item verification checklist including FIR, remand orders, and charge sheets); (iii) <em>Case Decoding</em> (AI analysis of offenses, allegations, and bail eligibility); (iv) <em>Bail Strategy</em> (bail tracker, hearing calendar, AI-synthesized grounds, and legal precedents); (v) <em>Monitoring</em> (court appearance logs and family check-in records); (vi) <em>Tasks</em>; (vii) <em>Notes</em>; and (viii) <em>Calendar</em>.
+</p>
+
+<p>
+  <strong>4. Social Legal Partner Network &amp; Matching Engine (<code>/demo/volunteers</code>, <code>/demo/matching</code>):</strong> A roster of 241 legal partners cross-referenced against court jurisdictions (Saket, Tis Hazari, Rohini, Karkardooma, Patiala House), offense specializations, and active caseload ratios (e.g., 2/15 cases). The AI Matching Engine algorithmically evaluates and ranks candidates based on court presence and bandwidth.
+</p>
+
+<div class="figure-container avoid-break">
+  <svg width="100%" height="60" viewBox="0 0 650 60" xmlns="http://www.w3.org/2000/svg">
+    <!-- Stage 1 -->
+    <rect x="5" y="10" width="85" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="47" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">1. INTAKE</text>
+    <text x="47" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">Mulakat / Call</text>
+
+    <line x1="90" y1="29" x2="108" y2="29" stroke="#000000" stroke-width="1" />
+    <polygon points="108,26 114,29 108,32" fill="#000000" />
+
+    <!-- Stage 2 -->
+    <rect x="115" y="10" width="95" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="162" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">2. DOCUMENTS</text>
+    <text x="162" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">9-Item Checklist</text>
+
+    <line x1="210" y1="29" x2="228" y2="29" stroke="#000000" stroke-width="1" />
+    <polygon points="228,26 234,29 228,32" fill="#000000" />
+
+    <!-- Stage 3 -->
+    <rect x="235" y="10" width="95" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="282" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">3. DECODING</text>
+    <text x="282" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">AI Charge Parsing</text>
+
+    <line x1="330" y1="29" x2="348" y2="29" stroke="#000000" stroke-width="1" />
+    <polygon points="348,26 354,29 348,32" fill="#000000" />
+
+    <!-- Stage 4 -->
+    <rect x="355" y="10" width="90" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="400" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">4. MATCHING</text>
+    <text x="400" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">Partner Assign</text>
+
+    <line x1="445" y1="29" x2="463" y2="29" stroke="#000000" stroke-width="1" />
+    <polygon points="463,26 469,29 463,32" fill="#000000" />
+
+    <!-- Stage 5 -->
+    <rect x="470" y="10" width="95" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="517" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">5. BAIL STRAT.</text>
+    <text x="517" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">AI Grounds / Filing</text>
+
+    <line x1="565" y1="29" x2="583" y2="29" stroke="#000000" stroke-width="1" />
+    <polygon points="583,26 589,29 583,32" fill="#000000" />
+
+    <!-- Stage 6 -->
+    <rect x="590" y="10" width="55" height="38" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="617" y="26" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">6. RESOLV.</text>
+    <text x="617" y="38" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">Days Saved</text>
+  </svg>
+  <div class="figure-caption">Figure 1: High-Level Operational Case Lifecycle Flow on the Project ALT Platform [Verified Fact]</div>
+</div>
+
+<!-- ========================================== -->
+<!-- SECTION 3 & 4: ADOPTION PROBLEM & ROOT CAUSES -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">3. The Product Adoption Problem</h1>
+
+<p>
+  The fundamental challenge at Project ALT is not software reliability or technical functionality. It is an <strong>Operational Integration Disconnect</strong> between desktop-centric software design and the fast-paced, split-environment workflow of legal aid casework.
+</p>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Operational Dimension</th>
+      <th style="width: 37%;">Field &amp; Ground Reality (How Team Works)</th>
+      <th style="width: 38%;">Current Platform Architecture (What Is Built)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Data Capture Context</strong></td>
+      <td>Prison visits and <em>mulakats</em> on one side; calling families, taking updates, and tracking progress from the office on the other.</td>
+      <td>Structured desktop web interface with multi-tab data entry forms and 9-point document checklists.</td>
+    </tr>
+    <tr>
+      <td><strong>Caseload Integrity Risk</strong></td>
+      <td>Team relies on established spreadsheets because missing a court hearing carries severe consequences for clients.</td>
+      <td>Platform exists in parallel without a formal migration protocol, creating fear of dual entry and lost data.</td>
+    </tr>
+    <tr>
+      <td><strong>Perceived Value</strong></td>
+      <td>Staff perceive platform data entry as administrative reporting rather than an immediate aid to daily work.</td>
+      <td>High-value automated features (AI decoding, bail grounds) require initial data entry before showing utility.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 class="section-title">4. Why Adoption Is Currently Low</h1>
+
+<p>
+  A diagnostic evaluation of ground operations identifies four systemic factors contributing to low adoption:
+</p>
+
+<p>
+  <strong>1. Split Workflow Between Field and Desk [Verified Fact / Operational Ingestion]:</strong> As established in the project context, the team's work is split between field visits (prison visits and <em>mulakats</em>) and office desk work (calling families, taking updates, tracking progress in spreadsheets). Field visits generate quick, unformatted notes. When staff return to the office, transcribing these notes across multiple web tabs introduces extra friction compared to updating an existing spreadsheet.
+</p>
+
+<p>
+  <strong>2. The Dual-Entry Burden [Strategic Recommendation]:</strong> In the absence of an operational transition protocol, entering data into ALT represents redundant effort on top of active spreadsheets. Under daily workload pressures, staff default to the familiar spreadsheets they already maintain.
+</p>
+
+<p>
+  <strong>3. High Latency to Value Realization:</strong> To benefit from AI Case Decoding or automated bail grounds, users must first complete demographic intake and upload case paperwork. This delay causes users to perceive ALT as administrative overhead rather than a tool that saves them time.
+</p>
+
+<p>
+  <strong>4. Cognitive Overload from Monolithic Feature Exposure:</strong> Presenting all six stages, eight tabs, partner rosters, and matching systems simultaneously creates operational intimidation for a small team managing urgent casework.
+</p>
+
+<!-- ========================================== -->
+<!-- SECTION 5 & 6: STRATEGY & ROLE WORKFLOWS -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">5. Proposed Adoption Strategy</h1>
+
+<p>
+  <span class="tag-label">[Strategic Recommendation]</span> To overcome operational inertia, we introduce a structured <strong>Adoption Bridge</strong> governed by the principle: <em>"Integrate ALT into the team's existing physical and desk habits rather than attempting an abrupt digital overhaul."</em>
+</p>
+
+<ul style="margin-bottom: 8pt;">
+  <li><strong>Preserve Natural Field Habits:</strong> Allow associates to maintain quick notebook jottings during prison visits; introduce ALT strictly as a structured 10-minute desk ritual upon office return.</li>
+  <li><strong>Accelerate Value Realization:</strong> Expose AI Case Decoding and automated bail petition grounds early to legal associates to provide projected drafting time savings per case.</li>
+  <li><strong>Sequential Module Rollout:</strong> Introduce Intake &amp; Overview (Week 1) &rarr; Documentation &amp; Monitoring (Week 2) &rarr; AI Decoding &amp; Bail Strategy (Week 3) &rarr; Matching &amp; Cutover (Week 4).</li>
+  <li><strong>Safe, 3-Stage Spreadsheet Sunset:</strong> Transition spreadsheets from <em>Active Parallel Tracker</em> &rarr; <em>Controlled Split</em> &rarr; <em>Locked Read-Only Archive</em> to substantially mitigate operational disruption to active cases.</li>
+</ul>
+
+<div class="figure-container avoid-break">
+  <svg width="100%" height="50" viewBox="0 0 650 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Box 1 -->
+    <rect x="10" y="8" width="180" height="34" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="100" y="23" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">EXISTING WORKFLOW</text>
+    <text x="100" y="34" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">Mulakat notes &bull; Phone logs &bull; Sheets</text>
+
+    <line x1="190" y1="25" x2="225" y2="25" stroke="#000000" stroke-width="1" />
+    <polygon points="225,22 231,25 225,28" fill="#000000" />
+
+    <!-- Box 2 -->
+    <rect x="235" y="8" width="180" height="34" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="325" y="23" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">THE ADOPTION BRIDGE</text>
+    <text x="325" y="34" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">10-Min Desk Sync &bull; AI Value First</text>
+
+    <line x1="415" y1="25" x2="450" y2="25" stroke="#000000" stroke-width="1" />
+    <polygon points="450,22 456,25 450,28" fill="#000000" />
+
+    <!-- Box 3 -->
+    <rect x="460" y="8" width="180" height="34" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="550" y="23" fill="#000000" font-family="'Times New Roman', serif" font-size="8.5pt" font-weight="bold" text-anchor="middle">ALT-INTEGRATED STATE</text>
+    <text x="550" y="34" fill="#444444" font-family="'Times New Roman', serif" font-size="7pt" text-anchor="middle">Single Source of Truth &bull; Days Saved</text>
+  </svg>
+  <div class="figure-caption">Figure 2: The Adoption Bridge Transition Architecture [Strategic Recommendation]</div>
+</div>
+
+<h1 class="section-title">6. Role-Based Workflow Integration</h1>
+
+<p>
+  <strong>A. Field Associate (Prison Visits to Structured Intake):</strong>
+  <br>
+  <em>Workflow:</em> Prison Mulakat (Field Notes) &rarr; Office Return &rarr; 10-Minute Post-Mulakat Sync &rarr; Live in ALT.
+  <br>
+  Field associates continue conducting in-person interviews at prison visitor rooms using notebooks. Upon returning to the office, they open <code>+ New Case Intake</code> and spend 5&ndash;8 minutes recording prisoner demographics, facility details, arrest dates, and family contact numbers. This eliminates repetitive queries from colleagues seeking prisoner details.
+</p>
+
+<p>
+  <strong>B. Social Worker (Document Collection &amp; Family Outreach):</strong>
+  <br>
+  <em>Workflow:</em> Family Calling &rarr; Collect Court Records &rarr; Toggle 9-Item Checklist &rarr; "Docs Ready" Tag.
+  <br>
+  Social workers filter the Cases list by <code>Stage: Documentation</code>. They conduct family outreach calls, record socioeconomic debt context in the <strong>Monitoring Tab</strong>, obtain copy documents from court registries, and toggle checklist items (<code>Requested</code> &rarr; <code>Received</code> &rarr; <code>Verified</code>). The visual progress bar replaces cluttered spreadsheet columns.
+</p>
+
+<p>
+  <strong>C. Legal Associate (AI Decoding, Bail Drafting &amp; Court Sync):</strong>
+  <br>
+  <em>Workflow:</em> Filter "Docs Ready" &rarr; Review AI Decoding &rarr; Copy AI Bail Grounds &rarr; File &amp; Log Hearing.
+  <br>
+  Legal associates filter for cases marked <code>Docs Ready</code>. They review AI-extracted BNS/IPC offenses and statutory bail eligibility in the <strong>Case Decoding Tab</strong>, utilize synthesized grounds and citations from the <strong>Bail Strategy Tab</strong> to assist in petition drafting, attend court hearings, and log results in the in-app calendar.
+</p>
+
+<!-- ========================================== -->
+<!-- SECTION 7: FOUR-WEEK PILOT PLAN -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">7. Four-Week Pilot Plan</h1>
+
+<p>
+  <span class="tag-label">[Pilot Assumption]</span> The pilot is structured across four consecutive weeks, scoping initial adoption to an initial cohort before broader operational cutover:
+</p>
+
+<div class="figure-container avoid-break">
+  <svg width="100%" height="45" viewBox="0 0 650 45" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="6" width="150" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="80" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">WEEK 1: BASELINE</text>
+    <text x="80" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">50 Tihar Cases &bull; Pre-loaded</text>
+
+    <rect x="170" y="6" width="150" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="245" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">WEEK 2: WORKFLOW</text>
+    <text x="245" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">Checklists &bull; Call Logs</text>
+
+    <rect x="335" y="6" width="150" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="410" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">WEEK 3: VALUE</text>
+    <text x="410" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">AI Decoding &bull; Bail Grounds</text>
+
+    <rect x="500" y="6" width="145" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="572" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">WEEK 4: SCALE</text>
+    <text x="572" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">Matching &bull; Sheets Locked</text>
+  </svg>
+  <div class="figure-caption">Figure 3: Four-Week Phased Implementation Progression [Strategic Recommendation]</div>
+</div>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 10%;">Week</th>
+      <th style="width: 20%;">Objective</th>
+      <th style="width: 26%;">Key Activities</th>
+      <th style="width: 14%;">Users Involved</th>
+      <th style="width: 14%;">ALT Modules</th>
+      <th style="width: 16%;">Risks &amp; Safeguards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Week 1</strong></td>
+      <td>Controlled Setup &amp; Baseline Verification</td>
+      <td>Pre-import an initial cohort of 50 active cases from spreadsheets; conduct a 15-minute walkthrough; verify demographics.</td>
+      <td>1 Lead Associate, 2 Field Associates, 1 Social Worker</td>
+      <td>Cases List View, Case Overview Tab</td>
+      <td><em>Risk:</em> Feature confusion.<br><em>Safeguard:</em> Restrict usage to Overview tab only.</td>
+    </tr>
+    <tr>
+      <td><strong>Week 2</strong></td>
+      <td>Daily Workflow Integration</td>
+      <td>Execute daily 10-minute post-mulakat desk sync; toggle 9-item document checklist; record family phone logs.</td>
+      <td>Field Associates, Social Workers</td>
+      <td>Intake Modal, Documentation, Monitoring</td>
+      <td><em>Risk:</em> Skipped entries.<br><em>Safeguard:</em> 5-minute Morning Standup review.</td>
+    </tr>
+    <tr>
+      <td><strong>Week 3</strong></td>
+      <td>Value Realization via AI Tools</td>
+      <td>Review AI charge decoding (BNS/IPC); utilize AI bail grounds for court petitions; sync hearing dates in calendar.</td>
+      <td>Legal Associates, Lead Advocates</td>
+      <td>Case Decoding, Bail Strategy, Calendar</td>
+      <td><em>Risk:</em> AI skepticism.<br><em>Safeguard:</em> Frame AI as draft briefing note.</td>
+    </tr>
+    <tr>
+      <td><strong>Week 4</strong></td>
+      <td>Expansion &amp; Full Cutover</td>
+      <td>Ingest remaining active project cases; activate Matching Engine; lock operational spreadsheets as read-only.</td>
+      <td>Entire Legal Aid Team &amp; Volunteers</td>
+      <td>Full Platform Suite &amp; AI Matching</td>
+      <td><em>Risk:</em> Habit relapse.<br><em>Safeguard:</em> Make spreadsheets read-only.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========================================== -->
+<!-- SECTION 8 & 9: TRANSITION & RITUALS -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">8. Spreadsheet Transition Strategy</h1>
+
+<p>
+  <span class="tag-label">[Strategic Recommendation]</span> To ensure that ongoing court proceedings and statutory bail deadlines are protected, spreadsheets are retired across three controlled operational phases:
+</p>
+
+<div class="figure-container avoid-break">
+  <svg width="100%" height="45" viewBox="0 0 650 45" xmlns="http://www.w3.org/2000/svg">
+    <!-- Stage 1 -->
+    <rect x="10" y="6" width="190" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="105" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">STAGE 1: PARALLEL RUN (W1-2)</text>
+    <text x="105" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">Sheets remain open as safety net</text>
+
+    <line x1="200" y1="22" x2="235" y2="22" stroke="#000000" stroke-width="1" />
+    <polygon points="235,19 241,22 235,25" fill="#000000" />
+
+    <!-- Stage 2 -->
+    <rect x="245" y="6" width="190" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="340" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">STAGE 2: CONTROLLED SPLIT (W3)</text>
+    <text x="340" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">Bail strategy &amp; docs locked in sheets</text>
+
+    <line x1="435" y1="22" x2="470" y2="22" stroke="#000000" stroke-width="1" />
+    <polygon points="470,19 476,22 470,25" fill="#000000" />
+
+    <!-- Stage 3 -->
+    <rect x="480" y="6" width="160" height="32" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="560" y="20" fill="#000000" font-family="'Times New Roman', serif" font-size="8pt" font-weight="bold" text-anchor="middle">STAGE 3: ALT PRIMARY (W4+)</text>
+    <text x="560" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6.5pt" text-anchor="middle">Sheets archived as read-only</text>
+  </svg>
+  <div class="figure-caption">Figure 4: Three-Stage Spreadsheet Sunsetting Model [Strategic Recommendation]</div>
+</div>
+
+<p>
+  <strong>Stage 1: Parallel Run (Weeks 1&ndash;2):</strong> Spreadsheets remain accessible as a secondary reference. Field staff log data directly into ALT; the Product Lead verifies consistency in legacy sheets, avoiding duplicate entry burdens on field associates.
+  <br>
+  <strong>Stage 2: Controlled Split (Week 3):</strong> Documentation checklists and bail tracking columns are locked in spreadsheets. Because AI drafting features exist solely on ALT, active tracking naturally shifts to the platform.
+  <br>
+  <strong>Stage 3: Full Operational Cutover (Week 4 Onward):</strong> Spreadsheets are marked <code>[ARCHIVED - READ ONLY]</code> and locked. All legal aid workflows operate within ALT, supported by automated weekly CSV database backups for administrative security.
+</p>
+
+<h1 class="section-title">9. Adoption Rituals and Feedback Loop</h1>
+
+<p>
+  <span class="tag-label">[Strategic Recommendation]</span> To cultivate repeatable operational habits without adding meeting fatigue, three micro-rituals totaling less than 20 minutes daily are instituted:
+</p>
+
+<p>
+  <strong>1. Morning 5-Minute Kanban Standup (09:30 AM &bull; 5 mins):</strong> The entire ground team reviews the <code>Cases Board View</code> to identify "Docs Ready" cases, review scheduled hearings for the day, and clear pipeline bottlenecks.
+  <br>
+  <strong>2. Post-Mulakat Desk Sync (02:30 PM &bull; 10 mins):</strong> Upon returning from field visits, field associates spend 5&ndash;10 minutes entering notebook jottings into structured ALT prisoner profiles.
+  <br>
+  <strong>3. Friday Pipeline Retrospective (Fridays 04:30 PM &bull; 15 mins):</strong> Legal associates and coordinators review granted bails, log Incarceration Days Saved, confirm next week's court dates, and evaluate friction logs.
+</p>
+
+<div class="formal-box avoid-break">
+  <strong>Rapid Feedback Channel:</strong> A dedicated internal communication thread (<code>#alt-pilot-feedback</code>) captures 30-second friction reports from staff (e.g., missing legal sections in dropdowns). The Lead Legal Associate serves as the single decision owner to resolve operational bottlenecks rapidly.
+</div>
+
+<!-- ========================================== -->
+<!-- SECTION 10 & 11: METRICS & GO/MODIFY/STOP -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">10. Success Metrics and Evaluation Framework</h1>
+
+<p>
+  <span class="tag-label">[Proposed Target vs. Verified Baseline]</span> The evaluation framework establishes objective targets for adoption, process velocity, spreadsheet displacement, and platform impact:
+</p>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 22%;">Evaluation Metric</th>
+      <th style="width: 28%;">Pre-Pilot Baseline [Verified Fact]</th>
+      <th style="width: 28%;">Proposed Pilot Target [Proposed Target]</th>
+      <th style="width: 22%;">Measurement Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Daily Active Usage (DAU)</strong></td>
+      <td>0% active platform engagement</td>
+      <td><strong>&ge; 85% daily active usage</strong> across all 3 roles (Target)</td>
+      <td>Platform Access Logs</td>
+    </tr>
+    <tr>
+      <td><strong>Post-Mulakat Sync Latency</strong></td>
+      <td>2&ndash;5 days lag between visit and entry</td>
+      <td><strong>&le; 24 hours</strong> (same-day desk entry) (Target)</td>
+      <td>Audit Timestamp Logs</td>
+    </tr>
+    <tr>
+      <td><strong>Bail Drafting Turnaround</strong></td>
+      <td>Manual drafting from raw case files</td>
+      <td><strong>Projected reduction in prep time</strong> via AI grounds (Target)</td>
+      <td>Advocate Time Records</td>
+    </tr>
+    <tr>
+      <td><strong>Spreadsheet Deprecation (SDI)</strong></td>
+      <td>0% (100% operational reliance on sheets)</td>
+      <td><strong>&ge; 90% operations</strong> exclusively in ALT (Target)</td>
+      <td>Sheet Edit Counter</td>
+    </tr>
+    <tr>
+      <td><strong>System Usability (SUS / CSAT)</strong></td>
+      <td>Unmeasured / informal dissatisfaction</td>
+      <td><strong>&ge; 80 / 100 score</strong> (High Usability) (Target)</td>
+      <td>Bi-weekly Survey</td>
+    </tr>
+    <tr>
+      <td><strong>Incarceration Days Saved</strong></td>
+      <td>0 days calculated in software</td>
+      <td><strong>100% of pilot bails</strong> tracked in ALT (Target)</td>
+      <td>Executive Dashboard</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 class="section-title">11. Go / Modify / Stop Decision Framework</h1>
+
+<p>
+  <span class="tag-label">[Strategic Recommendation]</span> At the conclusion of Week 4, leadership evaluates performance against explicit decision thresholds:
+</p>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 18%;">Decision</th>
+      <th style="width: 47%;">Quantitative &amp; Qualitative Trigger Conditions [Proposed Targets]</th>
+      <th style="width: 35%;">Operational Action Plan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GO</strong><br>(Scale Rollout)</td>
+      <td>&bull; DAU &ge; 85% across all three ground roles.<br>&bull; Spreadsheet Deprecation Index &ge; 90%.<br>&bull; Demonstrated drafting efficiency gains.<br>&bull; System Usability Score &ge; 80 / 100.</td>
+      <td>Permanently lock operational spreadsheets; scale ALT platform across the full project operational scope.</td>
+    </tr>
+    <tr>
+      <td><strong>MODIFY</strong><br>(2-Week Extension)</td>
+      <td>&bull; DAU between 65% &ndash; 84%.<br>&bull; SDI between 60% &ndash; 89% (isolated spreadsheet habits persist).<br>&bull; Bottleneck isolated to one specific user persona.</td>
+      <td>Conduct targeted 1-on-1 coaching for the lagging role; postpone full spreadsheet locking by 14 calendar days.</td>
+    </tr>
+    <tr>
+      <td><strong>STOP</strong><br>(Pilot Reset)</td>
+      <td>&bull; DAU &lt; 65% by Week 4.<br>&bull; SDI &lt; 50% (team actively maintains dual-entry).<br>&bull; System Usability Score &lt; 60 (net administrative burden).</td>
+      <td>Halt mandatory platform usage; conduct a comprehensive operational review of ground friction.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========================================== -->
+<!-- SECTION 12: PROTOTYPE & DEMONSTRATION -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">12. Product Prototype and Implementation Demonstration</h1>
+
+<p>
+  <span class="tag-label">[Implementation Demonstration]</span> To operationalize and visualize the strategic recommendations outlined in Sections 5 through 9, an independent product prototype has been engineered and publicly deployed. This prototype demonstrates how the proposed workflows &mdash; including daily action prioritization, structured docket inspection, non-disruptive spreadsheet migration, and advocate-controlled AI synthesis &mdash; can be translated into an intuitive, high-usability legal operations platform for field teams and advocates.
+</p>
+
+<h2>12.1 Purpose of the Prototype</h2>
+<p>
+  The prototype was developed to demonstrate how the strategic recommendations in this report could be translated into a practical advocate-facing legal operations interface. While the existing Project ALT system provides extensive technical capability, the prototype specifically explores how daily legal workflows can be made easier to understand, navigate, and adopt during high-pressure court and field operations.
+</p>
+
+<h2>12.2 Strategy-to-Product Mapping</h2>
+<p>
+  The interactive prototype directly embodies the strategic interventions proposed in this report:
+</p>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Strategic Recommendation</th>
+      <th style="width: 40%;">Prototype Implementation</th>
+      <th style="width: 35%;">Intended Operational Benefit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Centralized Operational Visibility</strong></td>
+      <td>Advocate dashboard featuring today's priorities, active dockets, hearing status, pending documents, and client follow-up indicators.</td>
+      <td>Reduces fragmented tracking across multiple disparate tools and paper notes.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Structured Case Workflow</strong></td>
+      <td>Unified case file workspace with 6-stage lifecycle stepper, case details, notes timeline, document checklist, tasks, and audit logs.</td>
+      <td>Provides a clearer single operational view of each case for legal and field staff.</td>
+    </tr>
+    <tr>
+      <td><strong>3. Hearing and Deadline Visibility</strong></td>
+      <td>Dedicated Hearings interface with courtroom briefs, judge bench information, and "Hearing Today" priority alert badges.</td>
+      <td>Helps advocates rapidly identify and prepare for urgent court actions.</td>
+    </tr>
+    <tr>
+      <td><strong>4. Document Workflow</strong></td>
+      <td>Document repository with categorical tagging, verification status tracking (Verified, Pending, Missing), and modal previews.</td>
+      <td>Makes document readiness transparent and easier to monitor before filings.</td>
+    </tr>
+    <tr>
+      <td><strong>5. Spreadsheet Transition Bridge</strong></td>
+      <td>5-step Spreadsheet Import workflow (File Upload &rarr; Data Preview &rarr; Schema Mapping &rarr; Diagnostics &rarr; Ingestion).</td>
+      <td>Demonstrates a practical bridge for moving existing operational records into the platform rather than forcing an abrupt migration.</td>
+    </tr>
+    <tr>
+      <td><strong>6. AI-Assisted Legal Operations</strong></td>
+      <td>AI Case Insights split-view interface pairing source records (FIR, remand logs) with structured synthesis (Summary, Facts, Dates, Grounds).</td>
+      <td>Demonstrates how AI-supported case synthesis can fit seamlessly into the broader legal workflow under advocate review.</td>
+    </tr>
+    <tr>
+      <td><strong>7. Accessibility and Usability</strong></td>
+      <td>Full English/Hindi bilingual switching, Light Mode, Dark Mode, and an independent Eye Comfort Mode.</td>
+      <td>Supports diverse linguistic preferences and reduces ocular strain during extended legal reading.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========================================== -->
+<!-- SECTION 12 CONTINUED: WORKFLOW, EVIDENCE & VALIDATION -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+
+<h2>12.3 End-to-End Prototype Workflow</h2>
+<p>
+  The prototype implements a streamlined operational flow connecting daily legal triage to strategic defense execution:
+</p>
+
+<div class="figure-container avoid-break">
+  <svg width="100%" height="45" viewBox="0 0 650 45" xmlns="http://www.w3.org/2000/svg">
+    <!-- Node 1 -->
+    <rect x="5" y="8" width="85" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="47" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">1. AUTH / DEMO</text>
+    <text x="47" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Advocate Access</text>
+
+    <line x1="90" y1="23" x2="102" y2="23" stroke="#000000" stroke-width="1" />
+    <polygon points="102,20.5 107,23 102,25.5" fill="#000000" />
+
+    <!-- Node 2 -->
+    <rect x="108" y="8" width="85" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="150" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">2. DASHBOARD</text>
+    <text x="150" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Priority Action Center</text>
+
+    <line x1="193" y1="23" x2="205" y2="23" stroke="#000000" stroke-width="1" />
+    <polygon points="205,20.5 210,23 205,25.5" fill="#000000" />
+
+    <!-- Node 3 -->
+    <rect x="211" y="8" width="85" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="253" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">3. WORKSPACE</text>
+    <text x="253" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Lifecycle &amp; Dockets</text>
+
+    <line x1="296" y1="23" x2="308" y2="23" stroke="#000000" stroke-width="1" />
+    <polygon points="308,20.5 313,23 308,25.5" fill="#000000" />
+
+    <!-- Node 4 -->
+    <rect x="314" y="8" width="95" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="361" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">4. OPERATIONS</text>
+    <text x="361" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Hearings / Tasks / Docs</text>
+
+    <line x1="409" y1="23" x2="421" y2="23" stroke="#000000" stroke-width="1" />
+    <polygon points="421,20.5 426,23 421,25.5" fill="#000000" />
+
+    <!-- Node 5 -->
+    <rect x="427" y="8" width="95" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="474" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">5. INGESTION</text>
+    <text x="474" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Spreadsheet Bridge</text>
+
+    <line x1="522" y1="23" x2="534" y2="23" stroke="#000000" stroke-width="1" />
+    <polygon points="534,20.5 539,23 534,25.5" fill="#000000" />
+
+    <!-- Node 6 -->
+    <rect x="540" y="8" width="105" height="30" fill="#ffffff" stroke="#000000" stroke-width="1" />
+    <text x="592" y="21" fill="#000000" font-family="'Times New Roman', serif" font-size="7.5pt" font-weight="bold" text-anchor="middle">6. AI SYNTHESIS</text>
+    <text x="592" y="31" fill="#444444" font-family="'Times New Roman', serif" font-size="6pt" text-anchor="middle">Decision Support</text>
+  </svg>
+  <div class="figure-caption">Figure 5: End-to-End Operational Workflow Architecture of the Implementation Demonstration Prototype</div>
+</div>
+
+<h2>12.4 Deployment and Technical Proof</h2>
+<div class="formal-box avoid-break">
+  <div class="formal-box-title">Implementation Evidence &amp; Verification Links</div>
+  <table style="width: 100%; border: none; font-size: 9pt; margin: 2pt 0;">
+    <tr style="background: transparent;">
+      <td style="border: none; padding: 3pt 0; width: 28%;"><strong>Live Web Deployment:</strong></td>
+      <td style="border: none; padding: 3pt 0;"><a class="formal-link" href="https://alt-legal-aid-platform.vercel.app/" target="_blank">https://alt-legal-aid-platform.vercel.app/</a></td>
+    </tr>
+    <tr style="background: transparent;">
+      <td style="border: none; padding: 3pt 0;"><strong>Source Code Repository:</strong></td>
+      <td style="border: none; padding: 3pt 0;"><a class="formal-link" href="https://github.com/gagandeepsingh76/ALT-Legal-Aid-Platform" target="_blank">https://github.com/gagandeepsingh76/ALT-Legal-Aid-Platform</a></td>
+    </tr>
+  </table>
+  <p style="margin: 4pt 0 0 0; font-size: 8.5pt;">
+    The prototype is publicly deployed on high-availability cloud infrastructure to enable immediate, interactive inspection of all user journeys. Full source code, component hierarchies, state management logic, and typographic stylesheets are maintained with open transparency in the accompanying GitHub repository.
+  </p>
+</div>
+
+<h2>12.5 Prototype Scope and Boundaries</h2>
+<div class="formal-box avoid-break" style="border-left: 3pt solid #444444;">
+  <strong>Implementation Disclaimer &amp; Epistemic Boundaries:</strong> This prototype is an independent implementation demonstration developed to visualize, test, and communicate the product and workflow recommendations presented in this strategy report. It should not be interpreted as an official replacement for the existing Project ALT production platform (<code>altindia.base44.app/demo</code>) or as evidence of completed organizational adoption. Actual pilot outcomes remain subject to real-world validation using the measurement framework defined in Section 10.
+</div>
+
+<h2>12.6 Validation Checklist</h2>
+<p>
+  A rigorous technical and usability verification was conducted across all core modules prior to public demonstration:
+</p>
+
+<table class="formal-table avoid-break">
+  <thead>
+    <tr>
+      <th style="width: 60%;">Validation Area</th>
+      <th style="width: 40%;">Demonstration Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Production build &amp; TypeScript compilation</td>
+      <td><strong>Passed</strong> (Zero errors / warnings)</td>
+    </tr>
+    <tr>
+      <td>Public cloud deployment &amp; CDN availability</td>
+      <td><strong>Available</strong> (Vercel Edge Network)</td>
+    </tr>
+    <tr>
+      <td>Responsive advocate product interface</td>
+      <td><strong>Implemented</strong> (Desktop &amp; Tablet)</td>
+    </tr>
+    <tr>
+      <td>English / Hindi bilingual localization</td>
+      <td><strong>Implemented</strong> (Noto Sans Devanagari)</td>
+    </tr>
+    <tr>
+      <td>Light and Dark appearance modes</td>
+      <td><strong>Implemented</strong> (Semantic Token System)</td>
+    </tr>
+    <tr>
+      <td>Independent Eye Comfort mode</td>
+      <td><strong>Implemented</strong> (Dual-Theme Modifier)</td>
+    </tr>
+    <tr>
+      <td>Case management &amp; lifecycle progression</td>
+      <td><strong>Demonstrated</strong> (Flagship ALT-2026-104)</td>
+    </tr>
+    <tr>
+      <td>Hearing management &amp; court briefs</td>
+      <td><strong>Demonstrated</strong> (Tis Hazari / Rohini dockets)</td>
+    </tr>
+    <tr>
+      <td>Document repository &amp; status tracking</td>
+      <td><strong>Demonstrated</strong> (Categorized verification)</td>
+    </tr>
+    <tr>
+      <td>Spreadsheet-to-platform transition bridge</td>
+      <td><strong>Demonstrated</strong> (5-Step Ingestion Wizard)</td>
+    </tr>
+    <tr>
+      <td>AI Case Insights &amp; synthesis workflow</td>
+      <td><strong>Demonstrated</strong> (OCR Viewer + Precedents)</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========================================== -->
+<!-- SECTION 13: CONCLUSION -->
+<!-- ========================================== -->
+<div class="page-break"></div>
+<h1 class="section-title">13. Conclusion</h1>
+
+<p>
+  The ALT Legal Aid Platform represents a purpose-built technological system designed to assist undertrial legal defense in India. The lack of adoption observed to date is <strong>an operational gap between desktop software interfaces and the split field-and-desk working reality of legal aid teams</strong>.
+</p>
+
+<p>
+  By acknowledging the practicalities of field visits, instituting a 10-minute post-visit desk routine, delivering drafting utility to legal associates through AI Case Decoding, and safely sunsetting spreadsheets across three distinct phases, this strategy establishes an operational bridge to sustainable platform adoption.
+</p>
+
+<p>
+  Through this 1-month pilot, Project ALT can transition its ground operations to the platform &mdash; accelerating bail filings, eliminating administrative fragmentation, and advancing toward its stated mission of preventing unjust pretrial incarceration. The accompanying product prototype confirms that these workflow principles are not merely conceptual, but immediately actionable in software.
+</p>
+
+<div class="formal-box avoid-break" style="margin-top: 18pt;">
+  <div class="formal-box-title">Executive Strategy Synthesis</div>
+  <table style="width: 100%; border: none; font-size: 8.5pt; margin: 0;">
+    <tr style="background: transparent;">
+      <td style="border: none; padding: 3pt 6pt; width: 33%;"><strong>1. Operational Grounding:</strong><br>Accommodates physical field note-taking; embeds ALT as a lightweight desk routine.</td>
+      <td style="border: none; padding: 3pt 6pt; width: 33%;"><strong>2. Immediate Advocacy Value:</strong><br>Activates AI Case Decoding and bail grounds early to provide drafting efficiency and win staff buy-in.</td>
+      <td style="border: none; padding: 3pt 6pt; width: 33%;"><strong>3. Safe Transition:</strong><br>Phases out spreadsheets in 3 controlled stages, mitigating operational disruption to active cases.</td>
+    </tr>
+  </table>
+</div>
+
+<div style="text-align: center; margin-top: 30pt; font-size: 9pt; color: #444444; border-top: 0.5pt solid #888888; padding-top: 10pt;">
+  Project ALT &bull; Product Adoption and 4-Week Pilot Strategy Report<br>
+  Prepared by <strong>Gagandeep Singh</strong> &bull; Strategy &amp; Product Development Assignment &bull; August 2026
+</div>
+
+</body>
+</html>
