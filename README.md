@@ -36,48 +36,46 @@ Developed as part of a **Strategy & Product Development Assignment**, this proto
 ### Access Portal
 
 <p align="center">
-  <img src="docs/images/login-page.png" alt="ALT Legal Aid Platform Access Portal" width="850"/>
+  <img src="docs/images/login-page.png" alt="ALT Legal Aid Platform Access Portal" width="820" />
 </p>
 
 <p align="center">
-  <em>Institutional access interface with demonstration access for exploring the platform workflow.</em>
+  <em>Institutional access interface for exploring the platform workflow.</em>
 </p>
 
-<br/>
 
 ### Executive Dashboard
 
 <p align="center">
-  <img src="docs/images/dashboard.png" alt="ALT Legal Aid Platform Executive Dashboard" width="850"/>
+  <img src="docs/images/dashboard.png" alt="ALT Legal Aid Platform Executive Dashboard" width="820" />
 </p>
 
 <p align="center">
-  <em>Centralized operational view highlighting urgent hearings, pending documents, follow-ups, and active cases.</em>
+  <em>Centralized operational visibility for hearings, priorities, documents, and active cases.</em>
 </p>
 
-<br/>
 
 ### Case Workspace
 
 <p align="center">
-  <img src="docs/images/case-workspace.png" alt="ALT Legal Aid Platform Case Workspace" width="850"/>
+  <img src="docs/images/case-workspace.png" alt="ALT Legal Aid Platform Case Workspace" width="820" />
 </p>
 
 <p align="center">
-  <em>Structured case workspace with lifecycle tracking, case information, notes, documents, and operational actions.</em>
+  <em>Structured workspace for case lifecycle tracking, information, notes, and operational actions.</em>
 </p>
 
-<br/>
 
 ### AI Case Insights
 
 <p align="center">
-  <img src="docs/images/ai-case-insights.png" alt="ALT Legal Aid Platform AI Case Insights" width="850"/>
+  <img src="docs/images/ai-case-insights.png" alt="ALT Legal Aid Platform AI Case Insights" width="820" />
 </p>
 
 <p align="center">
   <em>AI-assisted workspace for organizing source case information into structured legal insights.</em>
 </p>
+
 
 ---
 
