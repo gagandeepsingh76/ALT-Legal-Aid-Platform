@@ -33,17 +33,6 @@ Developed as part of a **Strategy & Product Development Assignment**, this proto
 
 ## Product Preview
 
-### Access Portal
-
-<p align="center">
-  <img src="docs/images/login-page.png" alt="ALT Legal Aid Platform Access Portal" width="820" />
-</p>
-
-<p align="center">
-  <em>Institutional access interface for exploring the platform workflow.</em>
-</p>
-
-
 ### Executive Dashboard
 
 <p align="center">
@@ -63,6 +52,17 @@ Developed as part of a **Strategy & Product Development Assignment**, this proto
 
 <p align="center">
   <em>Structured workspace for case lifecycle tracking, information, notes, and operational actions.</em>
+</p>
+
+
+### Hearings Management
+
+<p align="center">
+  <img src="docs/images/hearings.png" alt="ALT Legal Aid Platform Hearings Management" width="820" />
+</p>
+
+<p align="center">
+  <em>Court diary schedule categorized by court dates with courtroom briefs and required filing checklists.</em>
 </p>
 
 
